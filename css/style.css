@@ -5,7 +5,6 @@ body {
     margin: 0;
 }
 
-
 header {
     display: flex;
     flex-direction: row;
@@ -19,6 +18,7 @@ h1 {
     margin-right: 100px;
 }
 
+
 .logo {
     height: 50px;
     margin-left: 100px;
@@ -29,6 +29,7 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 .photographer_section article {
@@ -44,7 +45,31 @@ h1 {
     font-size: 36px;
 }
 
+.profil-content {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 0.5;
+}
+
+.profil-content h3 {
+    color: #901C1C;
+    margin-top: -1.5rem;
+}
+.profil-content span {
+    color:grey;
+    font-size: 13px;
+}
+.photographer_section .profil-content p {
+    font-size: 15px;
+    margin-top: -0.2rem;
+}
+
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
 }
