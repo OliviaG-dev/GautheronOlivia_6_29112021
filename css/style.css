@@ -1,5 +1,26 @@
 @import url("photographer.css");
 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
@@ -16,12 +37,13 @@ header {
 h1 {
     color: #901C1C;
     margin-right: 100px;
+    font-size: 36px;
 }
 
 
 .logo {
     height: 50px;
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
 .photographer_section {
@@ -51,25 +73,40 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    line-height: 0.5;
+    
 }
 
 .profil-content h3 {
     color: #901C1C;
-    margin-top: -1.5rem;
+    
 }
 .profil-content span {
-    color:grey;
+    color:#999595;
     font-size: 13px;
 }
 .photographer_section .profil-content p {
     font-size: 15px;
-    margin-top: -0.2rem;
+    
 }
 
-.photographer_section article img {
+.lien-profil {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    color: black;
+}
+
+
+.lien-profil img {
+    margin-bottom: 20px;
     height: 200px;
     width: 200px;
     object-fit: cover;
     border-radius: 50%;
+    filter: drop-shadow(0 0 0.95rem rgba(190, 186, 187, 0.671));
 }
