@@ -46,12 +46,14 @@
   
   function getUserProfilDOM() {
     const section = document.querySelector(".photograph-header");
+
+    const content = document.createElement("div");
     
     const h1 = document.createElement("h1");
     h1.textContent = name;
     
     const div = document.createElement("div");
-    div.className = "profil-content";
+    div.className = "content-profil";
     
     const h3 = document.createElement("h3");
     h3.textContent = `${city}, ${country}`;
@@ -63,8 +65,9 @@
     img.setAttribute("src", picture);
     img.setAttribute("alt", `Une photo de ${name}`);
     
-    section.appendChild(h1);
-    section.appendChild(div);
+    section.appendChild(content)
+    content.appendChild(h1);
+    content.appendChild(div);
     div.appendChild(h3);
     div.appendChild(p);
     section.appendChild(img);
