@@ -168,3 +168,25 @@ form input {
 .select:hover {
     background-color: #D3573C;
 }
+
+.body-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+}
+
+.gallery-card {
+    max-width: 45%;
+    height: 55%;
+    background-color: #DB8876;
+}
+.gallery-card img {
+    width: 100%;
+}
+
+.gallery-card video {
+    width: 100%;
+}

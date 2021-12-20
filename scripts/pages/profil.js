@@ -1,42 +1,40 @@
 
-async function getPhotographers() {
-  const url = "./data/photographers.json";
-  //let photographers = [];
-  // Penser à remplacer par les données récupérées dans le json
-  //await fetch(url)
-   // .then((res) => res.json())
-   // .then((data) => (photographers = data.photographers));
-  const response = await fetch(url)
-  const data = await response.json()
-  // et bien retourner le tableau photographers seulement une fois
-  return {
-    photographers: [...data.photographers],
-  };
+import { getPhotographers, getPhotographerId, getJsonData, getGalleryData} from '../utils/fetch.js';
+import { photographerFactory } from '../factories/photographer.js';
+import { galleryFactory } from '../factories/gallery.js';
+
+
+async function profil(photographer) {
+  return (
+    photographerFactory(photographer).getUserProfilDOM()
+    );
+}
+async function getPhotographerObject(profilId) {
+  const jsonData = await getJsonData();
+  return jsonData.photographers.find(photographer => photographer.id === profilId);
 }
 
-function getPhotographerId() {
-  return parseInt(new URLSearchParams(window.location.search).get('id'));
-}
-
-async function profil(photographer) { 
-  // && sinon "problème d'asyncronicité".
-  return getPhotographerId() && photographerFactory(photographer).getUserProfilDOM();    
+  //gallery
+  async function getGallery(gallery) {
+    const gallerySection = document.querySelector(".body-gallery");
+    
+      for (const media of gallery) {
+      const mediaGallery = galleryFactory(media);
+      const mediaGalleryDOM = mediaGallery.getGalleryDOM();
+      gallerySection.appendChild(mediaGalleryDOM);
+    }
+  }
   
-}
-
-async function getPhotographerObject(data, profilId) {
-  return data.photographers.find(photographer => photographer.id === profilId);
-}
-
-async function profilInit() {
+  async function profilInit() {
     const jsonData = await getPhotographers();
     const profilId = getPhotographerId();
-    const photographer = await getPhotographerObject(jsonData, profilId);    
-
-    profil(photographer);
+    console.log(profilId);
+    const photographer = await getPhotographerObject(profilId);
+    const gallery = await getGalleryData(profilId);
+;
+  profil(photographer)
+  getGallery(gallery);
 }
 
 profilInit();
-
-
 

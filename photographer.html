@@ -6,6 +6,7 @@
   <link href="css/photographer.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script src="https://kit.fontawesome.com/7cc1ff1b73.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <title>Fisheye - photographe </title>
 </head>
@@ -27,6 +28,7 @@
         <div class="filter-label"><label for="label-selection">Trier par</label></div>
         <div class="filter-select">
           <select name="filter" id="label-selection">
+            <option class="select" value="">---------</option>
             <option class="select" value="popularité">Popularité</option>
             <option class="select" value="date">Date</option>
             <option class="select" value="titre">Titre</option>
@@ -60,8 +62,7 @@
   
 
 
-  <script src="/scripts/factories/photographer.js"></script>
-  <script src="/scripts/pages/profil.js"></script>
+  <script src="/scripts/pages/profil.js" type="module"></script>
   <script src="/scripts/utils/contactForm.js"></script>
 </body>
 
