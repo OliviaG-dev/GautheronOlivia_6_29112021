@@ -1,4 +1,4 @@
-import { getPhotographers } from '../utils/fetch.js';
+import { getPhotographers } from '../utils/Service.js';
 import { photographerFactory } from '../factories/photographer.js';
 
 

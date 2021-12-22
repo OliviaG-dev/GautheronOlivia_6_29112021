@@ -134,8 +134,9 @@ form input {
 /********************************* Filter ***************************/
 
 .gallery-filter {
-    width: 100%;
-    margin: 30px 100px;
+    width: 100vh;
+    margin-left: 100px;
+    margin-top: 25px;;
     display: inline-flex;
     font-weight: bolder;
     align-items: center;
@@ -169,24 +170,51 @@ form input {
     background-color: #D3573C;
 }
 
+/********************************* Gallery ***************************/
+
 .body-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
+    gap: 162px;
+    margin-top: 50px;
     margin-bottom: 100px;
     margin-left: 100px;
+    margin-right: 100px;
 }
 
-.gallery-card {
-    max-width: 45%;
-    height: 55%;
-    background-color: #DB8876;
-}
+
 .gallery-card img {
-    width: 100%;
+    margin-bottom: 5px;
+    height: 350px;
+    width: 400px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .gallery-card video {
-    width: 100%;
+    margin-bottom: 5px;
+    height: 350px;
+    width: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.article-gallery{
+    display: flex;
+    justify-content: center;
+}
+
+.content-text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #901C1C; 
+}
+
+.heart {
+    margin-left: 5px;
+}
+
+.likes-gallery {
+    font-weight: bold;
 }

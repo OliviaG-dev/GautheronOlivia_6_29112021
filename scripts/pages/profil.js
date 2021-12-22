@@ -1,5 +1,5 @@
 
-import { getPhotographers, getPhotographerId, getJsonData, getGalleryData} from '../utils/fetch.js';
+import { getPhotographers, getPhotographerId, getJsonData, getGalleryData} from '../utils/service.js';
 import { photographerFactory } from '../factories/photographer.js';
 import { galleryFactory } from '../factories/gallery.js';
 

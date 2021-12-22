@@ -3,14 +3,8 @@ export function galleryFactory(data) {
   const { id, photographerId, title, image, video,likes, date} = data;
 
   let link;
-
-  // if (data.hasOwnProperty("image")) {
-    
-  //   link = `./assets/photo/${photographerId}/${image}`;
-  // } else {
-  //   link = `./assets/photo/${photographerId}/${video}`;
-  // }
-
+  
+  console.log("2",data);
   function getGalleryDOM() {
     const article = document.createElement("article");
     article.className = "article-gallery";
@@ -35,40 +29,35 @@ export function galleryFactory(data) {
       source.setAttribute("alt", "${title}");
     media.appendChild(source);
     }
-    // //image and video
-    // const image = document.createElement("img");
-    // if (data.hasOwnProperty("image")) {
-    //   image.setAttribute("src", link);
-    //   image.setAttribute("alt", "${title}");
-    // }
-
-    // const video = document.createElement("video");
-    // const source = document.createElement("source");
-    // if (data.hasOwnProperty("video")) {
-    //   source.setAttribute("src", link);
-    //   source.setAttribute("alt", "${title}");
-    // }
-
+    
     const div = document.createElement("div");
+    div.className = "content-text";
 
     //title
-    const title = document.createElement("h3");
-    title.className = "title-gallery";
+    const titre = document.createElement("h3");
+    titre.className = "title-gallery";
+    titre.textContent = title;
+
+
+    const contentLike = document.createElement("div");
 
     //likes
-    const likes = document.createElement("span");
-    likes.className = "likes-gallery";
-    //likes.textContent = `${likes} <i class="fas fa-heart"></i>`;
+    const like = document.createElement("span");
+    like.className = "likes-gallery";
+    like.textContent = likes;
+
+    const icone = document.createElement("i");
+    icone.className = "fas fa-heart heart";
 
     article.appendChild(aside);
     aside.appendChild(a);
-    // a.appendChild(image);
-    // a.appendChild(video);
     a.appendChild(media);
-    // video.appendChild(source);
     aside.appendChild(div);
-    div.appendChild(title);
-    div.appendChild(likes);
+    div.appendChild(titre);
+    div.appendChild(contentLike);
+    contentLike.appendChild(like);
+    contentLike.appendChild(icone)
+
 
     return article;
   }
