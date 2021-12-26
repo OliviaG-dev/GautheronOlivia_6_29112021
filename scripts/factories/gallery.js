@@ -1,10 +1,9 @@
 
 export function galleryFactory(data) {
-  const { id, photographerId, title, image, video,likes, date} = data;
+  const { id, photographerId, title, image, video, likes, date, } = data;
 
   let link;
   
-  console.log("2",data);
   function getGalleryDOM() {
     const article = document.createElement("article");
     article.className = "article-gallery";
@@ -43,7 +42,7 @@ export function galleryFactory(data) {
 
     //likes
     const like = document.createElement("span");
-    like.className = "likes-gallery";
+    like.className = " ";
     like.textContent = likes;
 
     const icone = document.createElement("i");
@@ -58,8 +57,8 @@ export function galleryFactory(data) {
     contentLike.appendChild(like);
     contentLike.appendChild(icone)
 
-
     return article;
   }
+
   return { id, likes, date, title, getGalleryDOM };
 }

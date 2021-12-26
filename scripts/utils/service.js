@@ -10,6 +10,10 @@ export async function getPhotographers() {
   return jsonData.photographers;
 }
 
+export async function getProfil(profilId) {
+  return jsonData.photographers.find(photographer => photographer.id === profilId);
+}
+
 export async function getGalleryData(profilId) {
   return jsonData.media.filter(gallery => gallery.photographerId === profilId);
 }
