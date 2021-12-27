@@ -18,7 +18,7 @@ async function getPhotographerObject(profilId) {
 //gallery
 async function getGallery(gallery) {
   const gallerySection = document.querySelector(".body-gallery");
-  
+  gallerySection.innerHTML= "";
     for (const media of gallery) {
     const mediaGallery = galleryFactory(media);
     const mediaGalleryDOM = mediaGallery.getGalleryDOM();
@@ -30,9 +30,9 @@ async function getGallery(gallery) {
 //footerlike/price
 async function createFooter(profilId, gallery) {
   
-  const photographers = await getProfil(profilId);
+  const photographer = await getProfil(profilId);
   const body = document.querySelector(".footer-gallery")
-  const price = photographers.price;
+  const price = photographer.price;
   
   const footer = document.createElement('aside');
   footer.setAttribute('id', 'footer');
@@ -58,17 +58,53 @@ async function accFooter(gallery) {
   footerLikes.textContent = gallery.reduce((acc, curr) => acc + curr.likes, 0);
 }
 ////////////////////////////////////////////////////////////////////
+
+async function getMedias(filter) {
+
+const media = await getGalleryData(getPhotographerId()); 
+
+      let mediaSorted = [];
+      switch (filter) {
+        case "popularity":
+          mediaSorted = media.sort((a, b) => b.likes - a.likes);
+          break;
+        case "date":
+          mediaSorted = media.sort((a, b) => {
+            return new Date(a.date).valueOf() - new Date(b.date).valueOf();
+          });
+          break;
+        case "title":
+          mediaSorted = media.sort((a, b) => {
+            if (a.title.toLowerCase() < b.title.toLowerCase()) {
+              return -1;
+            } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
+              return 1;
+            }
+          });
+      }
+      getGallery(mediaSorted);
+}
+
+function filtersMedia() {
+  const filters = document.getElementById("filters");
   
+  filters.addEventListener("change", function () {
+    getMedias(filters.value);
+  });
+} 
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
 async function profilInit() {
-  const jsonData = await getPhotographers();
+  //const jsonData = await getPhotographers();
   const profilId = getPhotographerId();
-  console.log("2", profilId);
   const photographer = await getPhotographerObject(profilId);
   const gallery = await getGalleryData(profilId);
-
+  
   profil(photographer);
   getGallery(gallery);
   createFooter(profilId, gallery);
+  filtersMedia();
 }
 
 profilInit();

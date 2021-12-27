@@ -11,8 +11,9 @@ export function galleryFactory(data) {
     const aside = document.createElement("aside");
     aside.className = "gallery-card";
 
-    //lien media
-    const a = document.createElement("a");
+    //media
+    //const a = document.createElement("a");
+    
     let media;
     if (data.hasOwnProperty("image")) {
       link = `./assets/photo/${photographerId}/${image}`;
@@ -28,7 +29,14 @@ export function galleryFactory(data) {
       source.setAttribute("alt", "${title}");
     media.appendChild(source);
     }
+    media.addEventListener("click", function(e){
+      console.log(e.target);
+      console.log(e.target.getAttribute("data-link"));
+      //alert(e.target.getAttribute("data-link"))
+    })
     
+    media.setAttribute("data-link", link)
+
     const div = document.createElement("div");
     div.className = "content-text";
 
@@ -49,8 +57,8 @@ export function galleryFactory(data) {
     icone.className = "fas fa-heart heart";
 
     article.appendChild(aside);
-    aside.appendChild(a);
-    a.appendChild(media);
+    aside.appendChild(media);
+    //a.appendChild(media);
     aside.appendChild(div);
     div.appendChild(titre);
     div.appendChild(contentLike);
