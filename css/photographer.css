@@ -219,7 +219,7 @@ form input {
     font-weight: bold;
 }
 
-/********************Footer********************/
+/********************Footer gallery********************/
 
 .footer-gallery {
     background: #D3573C;
@@ -228,7 +228,7 @@ form input {
     position: fixed;
     bottom: 0;
     right: 25px;
-    z-index: 99;
+    z-index: 9;
     display: flex;
     align-items: center;
     border-radius: 10px 10px 0 0;
@@ -242,3 +242,79 @@ form input {
     margin-left: 30px;
 }
 
+/******************Lightbox Modal********************/
+.lightbox {
+	position: fixed;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	background: rgb(255, 253, 253);
+	z-index: 10;
+	animation: lightboxIn .5s;
+}
+
+
+.lightbox-next,
+.lightbox-prev {
+	border: none;
+	background: url(../assets/icons/arrow.svg) center center / 32px 56px no-repeat;
+	width: 80px;
+	height: 100%;
+	position: fixed;
+    top: 0;
+	right: 0;
+	margin-top: -14px;
+	z-index: 11;
+	margin-right: 50px;;
+}
+
+.lightbox-prev {
+	right: auto;
+	left: 0;
+	transform: rotate(180deg);
+	margin-left: 50px;
+}
+
+.lightbox-close {
+	border: none;
+	width:30px;
+	height: 30px;
+	background: url(../assets/icons/close-lightbox.svg) center center / 100% 100% no-repeat transparent;
+	position:fixed;
+	top: 20px;
+	right: 75px;
+	z-index: 12;
+}
+
+.lightbox button {
+	opacity: .8;
+	cursor: pointer;
+	transition: opacity .3s;
+	text-indent: -9000px;
+}
+
+.lightbox button:hover {
+	opacity: 1;
+}
+
+.lightbox-container img {
+	max-width: 100%;
+	height: auto;
+	animation: lightboxIn .5s;
+}
+
+.lightbox-container {
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 150px;
+	margin-right: 150px;
+	margin-top: 60px;
+	min-height: 100vh;
+}
+
+@keyframes lightboxIn {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
