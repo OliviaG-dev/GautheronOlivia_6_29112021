@@ -211,6 +211,8 @@ form input {
     color: #901C1C; 
 }
 
+/******************Likes css********************/
+
 .heart {
     margin-left: 5px;
 }
@@ -318,3 +320,4 @@ form input {
 	from {opacity: 0;}
 	to {opacity: 1;}
 }
+

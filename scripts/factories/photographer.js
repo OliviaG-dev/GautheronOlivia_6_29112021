@@ -1,7 +1,6 @@
-  export function photographerFactory(data) {
-
+export function photographerFactory(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
-  console.log("1",data);
+  //console.log("1", data);
 
   const picture = `assets/photographers/${portrait}`;
 
@@ -10,10 +9,7 @@
 
     const a = document.createElement("a");
     a.className = "lien-profil";
-    a.setAttribute(
-      "href",
-      `./photographer.html?id=${id}`
-    );
+    a.setAttribute("href", `./photographer.html?id=${id}`);
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
@@ -43,35 +39,35 @@
     div.appendChild(span);
     return article;
   }
-  
+
   function getUserProfilDOM() {
     const section = document.querySelector(".photograph-header");
 
     const content = document.createElement("div");
-    
+
     const h1 = document.createElement("h1");
     h1.textContent = name;
-    
+
     const div = document.createElement("div");
     div.className = "content-profil";
-    
+
     const h3 = document.createElement("h3");
     h3.textContent = `${city}, ${country}`;
-    
+
     const p = document.createElement("p");
     p.textContent = tagline;
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `Une photo de ${name}`);
-    
-    section.appendChild(content)
+
+    section.appendChild(content);
     content.appendChild(h1);
     content.appendChild(div);
     div.appendChild(h3);
     div.appendChild(p);
     section.appendChild(img);
-    
+
     return section;
   }
   return { name, picture, getUserCardDOM, getUserProfilDOM };

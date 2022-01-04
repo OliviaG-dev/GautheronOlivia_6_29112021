@@ -21,3 +21,8 @@ export async function getGalleryData(profilId) {
 export function getPhotographerId() {
   return parseInt(new URLSearchParams(window.location.search).get("id"));
 }
+
+// export async function getLikesId(mediaId) {
+//   return jsonData.media.filter(likes => likes.Id === mediaId);
+// }
+// console.log(getLikesId());
