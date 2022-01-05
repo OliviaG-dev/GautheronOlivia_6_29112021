@@ -245,6 +245,14 @@ form input {
 }
 
 /******************Lightbox Modal********************/
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
 .lightbox {
 	position: fixed;
 	top:0;

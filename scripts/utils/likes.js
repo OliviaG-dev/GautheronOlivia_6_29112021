@@ -6,21 +6,33 @@ export async function countTotalLike(likes) {
 }
 
 export async function addLikes() {
-  let toggleLike = false;
+  let toggleLikes = [];
   const photographerDatas = await getGalleryData(getPhotographerId());
+  
+  for (let photo of photographerDatas){
+    toggleLikes[photo.id]= false
+  }
   const heartIcons = document.querySelectorAll(".add-likes");
+  //const likeCount =  target.parentNode.children[0].innerText;
+
   heartIcons.forEach((icon) =>
     icon.addEventListener("click", (event) => {
       const heartSelected = parseFloat(event.target.id);
-      photographerDatas.find((data) => {
-        if (toggleLike && data.id === heartSelected) {
+      photographerDatas.forEach((data) => {
+        //console.log(toggleLikes[data.id] + "&&" + data.id +"===" + heartSelected) 
+        if (!toggleLikes[data.id] && data.id === heartSelected) {
+          //console.log("ok");
+          //if (toggleLike && data.id === heartSelected) {
           event.target.parentNode.children[0].innerText = data.likes += 1;
           event.target.classList.replace("far", "fas");
-        } else if (!toggleLike && data.id === heartSelected) {
+          toggleLikes[data.id]=!toggleLikes[data.id] 
+        } else if (toggleLikes[data.id] && data.id === heartSelected) {
+          //console.log("ko");
           event.target.parentNode.children[0].innerText = data.likes -= 1;
           event.target.classList.replace("fas", "far");
+          toggleLikes[data.id]=!toggleLikes[data.id] 
         }
-        toggleLike = !toggleLike;
+        //toggleLike = !toggleLike;
       });
       countTotalLike(photographerDatas);
     })

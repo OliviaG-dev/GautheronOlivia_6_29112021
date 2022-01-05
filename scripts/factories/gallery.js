@@ -1,15 +1,17 @@
 export function galleryFactory(data) {
   const { id, photographerId, title, image, video, likes, date } = data;
-
+  //const closeModale = document.querySelector(".lightbox-close");
+  
   let link;
-
+  
   function getGalleryDOM() {
     const article = document.createElement("article");
     article.className = "article-gallery";
-
+    
     const aside = document.createElement("aside");
     aside.className = "gallery-card";
-
+    
+    //const modale = document.querySelector(".lightbox");
     //media
     //const a = document.createElement("a");
 
@@ -29,9 +31,12 @@ export function galleryFactory(data) {
       media.appendChild(source);
     }
     media.addEventListener("click", function (e) {
-      e.preventDefault();
-      //e.target.getAttribute("data-link")
-
+      const modale = getLightboxDOM()
+      const link = e.target.getAttribute("data-link")
+      const image = modale.querySelector("img");
+      image.src = link
+      
+      modale.classList.add("show")
       //console.log(e.target);
       //console.log(e.target.getAttribute("data-link"));
       //alert(e.target.getAttribute("data-link"))
@@ -70,31 +75,35 @@ export function galleryFactory(data) {
 
     return article;
   }
-
+////////////////////////////////////////////////////////////////////////
   function getLightboxDOM() {
-    const lightbox = createElement("article");
+    const lightbox = document.createElement("article");
     lightbox.className = "lightbox";
 
-    const close = createElement("boutton");
+    const close = document.createElement("boutton");
     close.className = "lightbox-close";
 
-    const next = createElement("boutton");
+    const next = document.createElement("boutton");
     next.className = "lightbox-next";
 
-    const prev = createElement("button");
+    const prev = document.createElement("button");
     prev.className = "ligthbox-prev";
 
-    const container = createElement("div");
+    const container = document.createElement("div");
     container.className = "ligthbox-container";
 
-    const picture = createElement("img");
+    const picture = document.createElement("img");
     picture.setAttribute("data-link", link);
 
-    lightbox.appendChild("lightbox-close");
-    lightbox.appendChild("lightbox-next");
-    lightbox.appendChild("lightbox-prev");
-    lightbox.appendChild("lightbox-container");
-    container.appendChild("picture");
+    const titlePicture= document.createElement("h2");
+    titlePicture.textContent = title;
+
+    lightbox.appendChild(close);
+    lightbox.appendChild(next);
+    lightbox.appendChild(prev);
+    lightbox.appendChild(container);
+    container.appendChild(picture);
+    container.appendChild(titlePicture);
 
     return lightbox;
     // <!-- <article class="lightbox">
@@ -106,6 +115,7 @@ export function galleryFactory(data) {
     // 	  </div>
     //   </article> -->
   }
+  ///////////////////////////////////////////////////////////////////////
 
   return { id, likes, date, title, getGalleryDOM, getLightboxDOM };
 }
