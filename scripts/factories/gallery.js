@@ -35,7 +35,7 @@ export function galleryFactory(data) {
       const link = e.target.getAttribute("data-link")
       const image = modale.querySelector("img");
       image.src = link
-      
+      console.log("coucou");
       modale.classList.add("show")
       //console.log(e.target);
       //console.log(e.target.getAttribute("data-link"));
@@ -66,7 +66,6 @@ export function galleryFactory(data) {
 
     article.appendChild(aside);
     aside.appendChild(media);
-    //a.appendChild(media);
     aside.appendChild(div);
     div.appendChild(titre);
     div.appendChild(contentLike);
@@ -77,27 +76,30 @@ export function galleryFactory(data) {
   }
 ////////////////////////////////////////////////////////////////////////
   function getLightboxDOM() {
+    const section = document.querySelector(".gallery");
+
     const lightbox = document.createElement("article");
     lightbox.className = "lightbox";
 
-    const close = document.createElement("boutton");
+    const close = document.createElement("button");
     close.className = "lightbox-close";
 
-    const next = document.createElement("boutton");
+    const next = document.createElement("button");
     next.className = "lightbox-next";
 
     const prev = document.createElement("button");
-    prev.className = "ligthbox-prev";
+    prev.className = "lightbox-prev";
 
     const container = document.createElement("div");
-    container.className = "ligthbox-container";
+    container.className = "lightbox-container";
 
     const picture = document.createElement("img");
-    picture.setAttribute("data-link", link);
+    picture.setAttribute("src", link);
 
     const titlePicture= document.createElement("h2");
     titlePicture.textContent = title;
 
+    section.appendChild(lightbox);
     lightbox.appendChild(close);
     lightbox.appendChild(next);
     lightbox.appendChild(prev);
@@ -105,15 +107,7 @@ export function galleryFactory(data) {
     container.appendChild(picture);
     container.appendChild(titlePicture);
 
-    return lightbox;
-    // <!-- <article class="lightbox">
-    // 	  <button class="lightbox-close">Fermer</button>
-    // 	  <button class="lightbox-next">Suivant</button>
-    // 	  <button class="lightbox-prev">Précédent</button>
-    // 	  <div class="lightbox-container">
-    // 		  <img src="./assets/photo/925/Fashion_Wings.jpg" alt="">
-    // 	  </div>
-    //   </article> -->
+    return section;
   }
   ///////////////////////////////////////////////////////////////////////
 

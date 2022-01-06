@@ -310,17 +310,21 @@ form input {
 
 .lightbox-container img {
 	max-width: 100%;
-	height: auto;
+	height: 550px;
 	animation: lightboxIn .5s;
+}
+
+.lightbox-container h2 {
+    text-align: left;
 }
 
 .lightbox-container {
 	display:flex;
+    flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	margin-left: 150px;
 	margin-right: 150px;
-	margin-top: 60px;
 	min-height: 100vh;
 }
 
