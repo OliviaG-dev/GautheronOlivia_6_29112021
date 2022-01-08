@@ -189,6 +189,7 @@ form input {
     width: 400px;
     object-fit: cover;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .gallery-card video {
@@ -315,7 +316,8 @@ form input {
 }
 
 .lightbox-container h2 {
-    text-align: left;
+    margin-top: 5px;
+    color: #901C1C;
 }
 
 .lightbox-container {

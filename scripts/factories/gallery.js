@@ -1,3 +1,4 @@
+
 export function galleryFactory(data) {
   const { id, photographerId, title, image, video, likes, date } = data;
   //const closeModale = document.querySelector(".lightbox-close");
@@ -36,11 +37,13 @@ export function galleryFactory(data) {
       const image = modale.querySelector("img");
       image.src = link
       console.log("coucou");
-      modale.classList.add("show")
+      modale.classList.add("show");
+      modale.classList.remove("hide");
       //console.log(e.target);
       //console.log(e.target.getAttribute("data-link"));
       //alert(e.target.getAttribute("data-link"))
     });
+
     ////////////////////////////////////////////////////////////////////////////////////
 
     media.setAttribute("data-link", link);
@@ -74,15 +77,21 @@ export function galleryFactory(data) {
 
     return article;
   }
-////////////////////////////////////////////////////////////////////////
+
   function getLightboxDOM() {
-    const section = document.querySelector(".gallery");
+    const article = document.querySelector(".lightboxBox");
 
     const lightbox = document.createElement("article");
     lightbox.className = "lightbox";
 
     const close = document.createElement("button");
     close.className = "lightbox-close";
+
+    close.addEventListener("click", function() {
+      const modale = getLightboxDOM()
+      modale.classList.add("hide");
+      
+    })
 
     const next = document.createElement("button");
     next.className = "lightbox-next";
@@ -93,13 +102,28 @@ export function galleryFactory(data) {
     const container = document.createElement("div");
     container.className = "lightbox-container";
 
-    const picture = document.createElement("img");
-    picture.setAttribute("src", link);
+    // const picture = document.createElement("img");
+    // picture.setAttribute("src", link);
+
+    let picture;
+    if (data.hasOwnProperty("image")) {
+      link = `./assets/photo/${photographerId}/${image}`;
+      picture = document.createElement("img");
+      picture.setAttribute("src", link);
+      picture.setAttribute("alt", "${title}");
+    } else {
+      link = `./assets/photo/${photographerId}/${video}`;
+      picture = document.createElement("video");
+      const source = document.createElement("source");
+      source.setAttribute("src", link);
+      source.setAttribute("alt", "${title}");
+      picture.appendChild(source);
+    }
 
     const titlePicture= document.createElement("h2");
     titlePicture.textContent = title;
 
-    section.appendChild(lightbox);
+    article.appendChild(lightbox);
     lightbox.appendChild(close);
     lightbox.appendChild(next);
     lightbox.appendChild(prev);
@@ -107,9 +131,9 @@ export function galleryFactory(data) {
     container.appendChild(picture);
     container.appendChild(titlePicture);
 
-    return section;
+    return article;
   }
-  ///////////////////////////////////////////////////////////////////////
+  
 
   return { id, likes, date, title, getGalleryDOM, getLightboxDOM };
 }
