@@ -56,6 +56,7 @@ time, mark, audio, video {
     font-size: 64px;
     font-weight: normal;
     text-align: center;
+    
 }
 
 form {
@@ -83,6 +84,7 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 35px;
 }
 
 form textarea {
@@ -90,6 +92,7 @@ form textarea {
     height: 168px;
     border: none;
     border-radius: 5px;
+    font-size: 25px;
 }
 
 
@@ -189,13 +192,19 @@ form textarea {
 /********************************* Gallery ***************************/
 
 .body-gallery {
-    display: grid;
+    margin: auto 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    /* display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 162px;
     margin-top: 50px;
     margin-bottom: 100px;
     margin-left: 100px;
-    margin-right: 100px;
+    margin-right: 100px; */
 }
 
 
@@ -219,6 +228,7 @@ form textarea {
 .article-gallery{
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 .content-text {

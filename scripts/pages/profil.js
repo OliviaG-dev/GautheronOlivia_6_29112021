@@ -106,7 +106,6 @@ async function profilInit() {
   getGallery(gallery);
   createFooter(profilId, gallery);
   filtersMedia();
-  
 
 }
 
