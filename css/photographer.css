@@ -20,6 +20,13 @@ time, mark, audio, video {
 
 #contact_modal {
     display: none;
+    position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 400%;
+	background: rgb(83, 81, 81, 0.50);
+	z-index: 10;
 }
 
 
@@ -32,7 +39,8 @@ time, mark, audio, video {
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    margin: 300px auto;
+    
 }
 
 .modal header {
@@ -76,6 +84,14 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+form textarea {
+    width: 100%;
+    height: 168px;
+    border: none;
+    border-radius: 5px;
+}
+
 
 /***************************** Header ***********************************/
 .body {
