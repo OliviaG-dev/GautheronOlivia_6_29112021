@@ -33,10 +33,12 @@ export function galleryFactory(data) {
     }
     media.addEventListener("click", function (e) {
       const modale = getLightboxDOM()
-      const link = e.target.getAttribute("data-link")
+      //const link = e.target.getAttribute("data-link")
       const image = modale.querySelector("img");
-      image.src = link
-      console.log("coucou");
+      //const video = modale.querySelector("video")
+      //image.src = link
+      //video.src = link
+      console.log(image.src);
       modale.classList.add("show");
       modale.classList.remove("hide");
       //console.log(e.target);
@@ -114,10 +116,14 @@ export function galleryFactory(data) {
     } else {
       link = `./assets/photo/${photographerId}/${video}`;
       picture = document.createElement("video");
-      const source = document.createElement("source");
-      source.setAttribute("src", link);
-      source.setAttribute("alt", "${title}");
-      picture.appendChild(source);
+      //const source = document.createElement("source");
+      picture.setAttribute("src", link);
+      picture.setAttribute("alt", "${title}");
+      picture.setAttribute("controls", "controls");
+      console.log(link);
+      picture.setAttribute("type", "mp4")
+      //source.setAttribute("autoplay");
+      //picture.appendChild(source);
     }
 
     const titlePicture= document.createElement("h2");
