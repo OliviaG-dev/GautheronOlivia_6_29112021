@@ -4,6 +4,7 @@ export function galleryFactory(data) {
   //const closeModale = document.querySelector(".lightbox-close");
   
   let link;
+  let currentUrl;
   
   function getGalleryDOM() {
     const article = document.createElement("article");
@@ -34,11 +35,11 @@ export function galleryFactory(data) {
     media.addEventListener("click", function (e) {
       const modale = getLightboxDOM()
       //const link = e.target.getAttribute("data-link")
-      const image = modale.querySelector("img");
+      //const image = modale.querySelector("img");
       //const video = modale.querySelector("video")
       //image.src = link
       //video.src = link
-      console.log(image.src);
+      //console.log(image.src);
       modale.classList.add("show");
       modale.classList.remove("hide");
       //console.log(e.target);
@@ -98,6 +99,27 @@ export function galleryFactory(data) {
     const next = document.createElement("button");
     next.className = "lightbox-next";
 
+    next.addEventListener("click", (e) =>{
+      // const article = e.target.parentNode
+      // console.log(article);
+      console.log(currentUrl);
+      const articles = document.querySelectorAll(".article-gallery")
+      //console.log(articles);
+      for(let key in articles){
+        let articleUrl = articles[key].firstChild.firstChild.getAttribute("data-link")
+
+        if (articleUrl == currentUrl) {
+          console.log(key);
+          let next = articles[key+1].firstChild.firstChild.getAttribute("data-link")
+          console.log(next);
+          break
+        }
+
+        //console.log(article.firstChild.firstChild.getAttribute("data-link"));
+      }
+    })
+
+
     const prev = document.createElement("button");
     prev.className = "lightbox-prev";
 
@@ -125,7 +147,8 @@ export function galleryFactory(data) {
       //source.setAttribute("autoplay");
       //picture.appendChild(source);
     }
-
+    currentUrl = link;
+    
     const titlePicture= document.createElement("h2");
     titlePicture.textContent = title;
 
