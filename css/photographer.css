@@ -46,6 +46,15 @@ time, mark, audio, video {
 .modal header {
     justify-content: space-between;
     width: 100%;
+    height: auto;
+    align-items:flex-start;
+}
+
+.container_header_modal_title{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    font-size: 64px;
 }
 
 .modal header img {
@@ -55,8 +64,6 @@ time, mark, audio, video {
 .modal header h2 {
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
-    
 }
 
 form {

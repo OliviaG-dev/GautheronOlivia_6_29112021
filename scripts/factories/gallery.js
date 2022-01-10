@@ -1,7 +1,6 @@
 
 export function galleryFactory(data) {
   const { id, photographerId, title, image, video, likes, date } = data;
-  //const closeModale = document.querySelector(".lightbox-close");
   
   let link;
   let currentUrl;
@@ -13,10 +12,7 @@ export function galleryFactory(data) {
     const aside = document.createElement("aside");
     aside.className = "gallery-card";
     
-    //const modale = document.querySelector(".lightbox");
-    //media
-    //const a = document.createElement("a");
-
+  
     //////////////////////////////////////////////////////////////////////////////////
     let media;
     if (data.hasOwnProperty("image")) {
@@ -27,11 +23,10 @@ export function galleryFactory(data) {
     } else {
       link = `./assets/photo/${photographerId}/${video}`;
       media = document.createElement("video");
-      const source = document.createElement("source");
-      source.setAttribute("src", link);
-      source.setAttribute("alt", "${title}");
-      media.appendChild(source);
+      media.setAttribute("src", link);
+      media.setAttribute("alt", "${title}");
     }
+
     media.addEventListener("click", function (e) {
       const modale = getLightboxDOM()
       //const link = e.target.getAttribute("data-link")
@@ -112,9 +107,9 @@ export function galleryFactory(data) {
           console.log(key);
           let next = articles[key+1].firstChild.firstChild.getAttribute("data-link")
           console.log(next);
-          break
+          break; 
         }
-
+        console.log(articleUrl);
         //console.log(article.firstChild.firstChild.getAttribute("data-link"));
       }
     })
@@ -126,9 +121,8 @@ export function galleryFactory(data) {
     const container = document.createElement("div");
     container.className = "lightbox-container";
 
-    // const picture = document.createElement("img");
-    // picture.setAttribute("src", link);
-
+    const containerMedia = document.createElement("div");
+    containerMedia.className = "lightbox-container-media"
     let picture;
     if (data.hasOwnProperty("image")) {
       link = `./assets/photo/${photographerId}/${image}`;
@@ -138,14 +132,10 @@ export function galleryFactory(data) {
     } else {
       link = `./assets/photo/${photographerId}/${video}`;
       picture = document.createElement("video");
-      //const source = document.createElement("source");
       picture.setAttribute("src", link);
       picture.setAttribute("alt", "${title}");
       picture.setAttribute("controls", "controls");
-      console.log(link);
       picture.setAttribute("type", "mp4")
-      //source.setAttribute("autoplay");
-      //picture.appendChild(source);
     }
     currentUrl = link;
     
@@ -157,8 +147,9 @@ export function galleryFactory(data) {
     lightbox.appendChild(next);
     lightbox.appendChild(prev);
     lightbox.appendChild(container);
-    container.appendChild(picture);
-    container.appendChild(titlePicture);
+    container.appendChild(containerMedia);
+    containerMedia.appendChild(picture);
+    containerMedia.appendChild(titlePicture);
 
     return article;
   }

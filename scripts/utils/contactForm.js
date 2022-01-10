@@ -16,11 +16,10 @@ closeContact.addEventListener("click", () => {
 async function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
-    const NameTitle = document.querySelector(".title_modal_contact");
+    const NameTitle = document.querySelector(".name_modal_photographer");
     const photographerProfil = await getProfil(getPhotographerId());
     const photographerName = photographerProfil.name;
-    NameTitle.textContent = `Contactez-moi ${photographerName}`;
-    console.log(photographerName);
+    NameTitle.textContent = photographerName;
 }
 
 function closeModal() {
