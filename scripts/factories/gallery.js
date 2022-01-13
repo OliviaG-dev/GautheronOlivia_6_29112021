@@ -3,7 +3,8 @@ export function galleryFactory(data) {
   const { id, photographerId, title, image, video, likes, date } = data;
   
   let link;
-  let currentUrl;
+  //let currentUrl;
+  
   
   function getGalleryDOM() {
     const article = document.createElement("article");
@@ -93,25 +94,66 @@ export function galleryFactory(data) {
 
     const next = document.createElement("button");
     next.className = "lightbox-next";
+    let count = 0;
 
     next.addEventListener("click", (e) =>{
+      count++;
+      const url = document.querySelectorAll(".gallery-card");
+	for (var i = 0; i < url.length; i++) {
+      
+      //console.log(url[i+1].firstChild.getAttribute("data-link"));
+      const link = url[i+count].firstChild.getAttribute("data-link")
+      if (url[url.length-1] === url[i+count]) {
+        count = -1;
+      }
+      picture.setAttribute("src", link);
+      return;
+    
+	  //console.log('fakeImage: ',url[i] && url[i+1].firstChild.getAttribute("data-link"));
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
       // const article = e.target.parentNode
       // console.log(article);
-      console.log(currentUrl);
-      const articles = document.querySelectorAll(".article-gallery")
+      //console.log("1", currentUrl);
+     // const articles = document.querySelectorAll(".gallery-card")
       //console.log(articles);
-      for(let key in articles){
-        let articleUrl = articles[key].firstChild.firstChild.getAttribute("data-link")
 
-        if (articleUrl == currentUrl) {
-          console.log(key);
-          let next = articles[key+1].firstChild.firstChild.getAttribute("data-link")
-          console.log(next);
-          break; 
-        }
-        console.log(articleUrl);
+      //for(let key in articles){
+        //console.log("10", key);
+        //console.log("11", articles[key]);
+        //let articleUrl = articles[key].firstChild.getAttribute("data-link")
+        //console.log("5", articleUrl);
+        // (articleUrl == currentUrl) {
+          //console.log("3", key);
+          //console.log(articles[key+1]);
+          //let next = articles[key+1].firstChild.getAttribute("data-link")
+          //console.log("4", next);
+//break; 
+        //}
+        //console.log("2",articleUrl);
+        //console.log(articleUrl);
         //console.log(article.firstChild.firstChild.getAttribute("data-link"));
-      }
+      //}
+
+
+
+
+
+
+
+
     })
 
 
@@ -128,16 +170,16 @@ export function galleryFactory(data) {
       link = `./assets/photo/${photographerId}/${image}`;
       picture = document.createElement("img");
       picture.setAttribute("src", link);
-      picture.setAttribute("alt", "${title}");
+      picture.setAttribute("alt", `${title}`);
     } else {
       link = `./assets/photo/${photographerId}/${video}`;
       picture = document.createElement("video");
       picture.setAttribute("src", link);
-      picture.setAttribute("alt", "${title}");
+      picture.setAttribute("alt", `${title}`);
       picture.setAttribute("controls", "controls");
       picture.setAttribute("type", "mp4")
     }
-    currentUrl = link;
+    //currentUrl = link;
     
     const titlePicture= document.createElement("h2");
     titlePicture.textContent = title;
