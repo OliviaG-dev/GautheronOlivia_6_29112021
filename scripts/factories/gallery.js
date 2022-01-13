@@ -1,7 +1,8 @@
 
 export function galleryFactory(data) {
-  const { id, photographerId, title, image, video, likes, date } = data;
+  const { id, photographerId, title, image, video, likes, date, linkUrl } = data;
   
+  //console.log(data);
   let link;
   //let currentUrl;
   
@@ -20,29 +21,22 @@ export function galleryFactory(data) {
       link = `./assets/photo/${photographerId}/${image}`;
       media = document.createElement("img");
       media.setAttribute("src", link);
-      media.setAttribute("alt", "${title}");
+      media.setAttribute("alt", `${title}`);
     } else {
       link = `./assets/photo/${photographerId}/${video}`;
       media = document.createElement("video");
       media.setAttribute("src", link);
-      media.setAttribute("alt", "${title}");
+      media.setAttribute("alt", `${title}`);
     }
-
+    
     media.addEventListener("click", function (e) {
-      const modale = getLightboxDOM()
-      //const link = e.target.getAttribute("data-link")
-      //const image = modale.querySelector("img");
-      //const video = modale.querySelector("video")
-      //image.src = link
-      //video.src = link
-      //console.log(image.src);
+      const modale = getLightboxDOM();
       modale.classList.add("show");
       modale.classList.remove("hide");
-      //console.log(e.target);
-      //console.log(e.target.getAttribute("data-link"));
-      //alert(e.target.getAttribute("data-link"))
+      
     });
-
+    
+    
     ////////////////////////////////////////////////////////////////////////////////////
 
     media.setAttribute("data-link", link);
@@ -99,36 +93,57 @@ export function galleryFactory(data) {
     next.addEventListener("click", (e) =>{
       count++;
       const url = document.querySelectorAll(".gallery-card");
-	for (var i = 0; i < url.length; i++) {
+      const urlAlt = document.querySelectorAll(".gallery-card");
       
-      //console.log(url[i+1].firstChild.getAttribute("data-link"));
-      const link = url[i+count].firstChild.getAttribute("data-link")
+	for (var i = 0; i < url.length; i++) {
+      console.log(url[i+1].firstChild.getAttribute("src"));
+      const link = url[i+count].firstChild.getAttribute("src")
+      const linkUrl = urlAlt[i+count].firstChild.getAttribute("alt")
+      
+      //console.log(linkUrl);
+      //console.log(link);
+      if (urlAlt[urlAlt.length-1] === urlAlt[i+count]){
+        count = -1;
+      }
       if (url[url.length-1] === url[i+count]) {
         count = -1;
       }
-      picture.setAttribute("src", link);
+
+      // console.log(data);
+      // let media;
+      // console.log(media);
+      // if (data.hasOwnProperty("image")) {
+      //   link = `./assets/photo/${photographerId}/${image}`;
+      //   media = document.createElement("img");
+      //   media.setAttribute("src", link);
+      //   media.setAttribute("alt", linkUrl);
+      // } else {
+      //   link = `./assets/photo/${photographerId}/${video}`;
+      //   media = document.createElement("video");
+      //   media.setAttribute("src", link);
+      //   media.setAttribute("alt", linkUrl);
+      //   media.setAttribute("controls", "controls");
+      //   media.setAttribute("type", "mp4")
+      // }
+      
+      
+     
+      titleMedia.innerText = linkUrl; 
+      media.setAttribute("alt", linkUrl);
+      media.setAttribute("src", link);
       return;
+      
+      
+      //console.log('fakeImage: ',url[i] && url[i+1].firstChild.getAttribute("data-link"));
+    }
     
-	  //console.log('fakeImage: ',url[i] && url[i+1].firstChild.getAttribute("data-link"));
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-      // const article = e.target.parentNode
-      // console.log(article);
-      //console.log("1", currentUrl);
-     // const articles = document.querySelectorAll(".gallery-card")
-      //console.log(articles);
+    
+    
+    // const article = e.target.parentNode
+    // console.log(article);
+    //console.log("1", currentUrl);
+    // const articles = document.querySelectorAll(".gallery-card")
+    //console.log(articles);
 
       //for(let key in articles){
         //console.log("10", key);
@@ -141,61 +156,57 @@ export function galleryFactory(data) {
           //let next = articles[key+1].firstChild.getAttribute("data-link")
           //console.log("4", next);
 //break; 
-        //}
+//}
         //console.log("2",articleUrl);
         //console.log(articleUrl);
         //console.log(article.firstChild.firstChild.getAttribute("data-link"));
-      //}
+        //}
+        
+      })
+      
+      
+      const prev = document.createElement("button");
+      prev.className = "lightbox-prev";
+      
+      const container = document.createElement("div");
+      container.className = "lightbox-container";
+      
+      const containerMedia = document.createElement("div");
+      containerMedia.className = "lightbox-container-media"
 
+      let media;
+      if (data.hasOwnProperty("image")) {
+        link = `./assets/photo/${photographerId}/${image}`;
+        media = document.createElement("img");
+        media.setAttribute("src", link);
+        media.setAttribute("alt", linkUrl);
+      } else {
+        link = `./assets/photo/${photographerId}/${video}`;
+        media = document.createElement("video");
+        media.setAttribute("src", link);
+        media.setAttribute("alt", linkUrl);
+        media.setAttribute("controls", "controls");
+        media.setAttribute("type", "mp4")
+      }
 
-
-
-
-
-
-
-    })
-
-
-    const prev = document.createElement("button");
-    prev.className = "lightbox-prev";
-
-    const container = document.createElement("div");
-    container.className = "lightbox-container";
-
-    const containerMedia = document.createElement("div");
-    containerMedia.className = "lightbox-container-media"
-    let picture;
-    if (data.hasOwnProperty("image")) {
-      link = `./assets/photo/${photographerId}/${image}`;
-      picture = document.createElement("img");
-      picture.setAttribute("src", link);
-      picture.setAttribute("alt", `${title}`);
-    } else {
-      link = `./assets/photo/${photographerId}/${video}`;
-      picture = document.createElement("video");
-      picture.setAttribute("src", link);
-      picture.setAttribute("alt", `${title}`);
-      picture.setAttribute("controls", "controls");
-      picture.setAttribute("type", "mp4")
-    }
-    //currentUrl = link;
-    
-    const titlePicture= document.createElement("h2");
-    titlePicture.textContent = title;
-
-    article.appendChild(lightbox);
+      //currentUrl = link;
+      
+      const titleMedia= document.createElement("h2");
+      // const titlePicture= document.createElement("h2");
+      titleMedia.innerText = title;
+      
+      article.appendChild(lightbox);
     lightbox.appendChild(close);
     lightbox.appendChild(next);
     lightbox.appendChild(prev);
     lightbox.appendChild(container);
     container.appendChild(containerMedia);
-    containerMedia.appendChild(picture);
-    containerMedia.appendChild(titlePicture);
+    containerMedia.appendChild(media);
+    containerMedia.appendChild(titleMedia);
 
     return article;
   }
   
 
-  return { id, likes, date, title, getGalleryDOM, getLightboxDOM };
+  return { id, likes, date, title, linkUrl, getGalleryDOM, getLightboxDOM };
 }
