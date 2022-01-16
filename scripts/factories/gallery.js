@@ -90,14 +90,14 @@ export function galleryFactory(data) {
       
       const url = document.querySelectorAll(".gallery-card");
       const urlAlt = document.querySelectorAll(".gallery-card");
-      
+
       for (var i = 0; i < url.length; i++) {
         //console.log(url[i + 1].firstChild.getAttribute("src"));
         const link = url[i + count].firstChild.getAttribute("src");
         const linkUrl = urlAlt[i + count].firstChild.getAttribute("alt");
-        
         //console.log(linkUrl);
         //console.log(link);
+
         if (urlAlt[urlAlt.length - 1] === urlAlt[i + count]) {
           count = -1;
         }
@@ -107,43 +107,49 @@ export function galleryFactory(data) {
         
         //let media;
         
-        const verifyMediaIsImage = (link) => {
-          //console.log("ko", link);
-          console.log( link.includes(".jpg"));
-          return link.includes(".jpg")
-          //console.log(link.includes(".jpg"));
-        };
-        //@params data.hasOwnProperty("image")
-        if (verifyMediaIsImage(link)) {
-          console.log("1", link);
-          //media.innerHTML = "";
-          //link = `./assets/photo/${photographerId}/${image}`;
+        // const verifyMediaIsImage = (link) => {
+        //   //console.log("ko", link);
+        //   console.log( link.includes(".jpg"));
+        //   return link.includes(".jpg")
+        //   //console.log(link.includes(".jpg"));
+        // };
+        // //@params data.hasOwnProperty("image")
+        // if (verifyMediaIsImage(link)) {
+        //   console.log("1", link);
+        //   //media.innerHTML = "";
+        //   //link = `./assets/photo/${photographerId}/${image}`;
           
-          //media = document.createElement("img");
-          media.setAttribute("src", link);
-          media.setAttribute("alt", linkUrl);
-          //containerMedia.appendChild(media);
-        } else {
-          console.log("2", link);
-          //media.innerHTML = "";
-          //link = `./assets/photo/${photographerId}/${video}`;
+        //   //media = document.createElement("img");
+        //   media.setAttribute("src", link);
+        //   media.setAttribute("alt", linkUrl);
+        //   //containerMedia.appendChild(media);
+        // } else {
+        //   console.log("2", link);
+        //   //media.innerHTML = "";
+        //   //link = `./assets/photo/${photographerId}/${video}`;
           
-          //media = document.createElement("video");
-          media.setAttribute("src", link);
-          media.setAttribute("alt", linkUrl);
-          media.setAttribute("controls", "controls");
-          media.setAttribute("type", "mp4");
-          //containerMedia.appendChild(media); 
-        }
+        //   //media = document.createElement("video");
+        //   media.setAttribute("src", link);
+        //   media.setAttribute("alt", linkUrl);
+        //   media.setAttribute("controls", "controls");
+        //   media.setAttribute("type", "mp4");
+        //   //containerMedia.appendChild(media); 
+        // }
         
         //containerMedia.appendChild(media);
+        
+        verifyMediaIsImage(link).reload;
         titleMedia.innerText = linkUrl;
-        //media.setAttribute("alt", linkUrl);
-        //media.setAttribute("src", link);
-        return;
+        media.setAttribute("alt", linkUrl);
+        media.setAttribute("src", link);
+        containerMedia.appendChild(media);
+        containerMedia.appendChild(titleMedia);
+        return
+        ;
         
         //console.log('fakeImage: ',url[i] && url[i+1].firstChild.getAttribute("data-link"));
       }
+      console.log(count);
       
       
       // const article = e.target.parentNode
@@ -171,7 +177,44 @@ export function galleryFactory(data) {
     });
 
     const prev = document.createElement("button");
-    prev.className = "lightbox-prev";
+      prev.className = "lightbox-prev";
+
+
+      prev.addEventListener("click", (e) =>{
+        const url = document.querySelectorAll(".gallery-card");
+        //const urlAlt = document.querySelectorAll(".gallery-card");
+console.log(url);
+        for (let i = url.length; i > 0 ; i--) {
+          //console.log(url);
+          //const linkUrl = urlAlt[ i + count].firstChild.getAttribute("alt");
+
+
+          // si jamais je me retrouve en negatif -1
+          // il faut que count = array.length
+          if (count === 0) {
+            count = url.length;
+          }
+
+
+          const link = url[count -1].firstChild.getAttribute("src");
+
+          //console.log(link);
+          //console.log(linkUrl);
+          //console.log(count);
+          count--;
+
+
+          //titleMedia.innerText = linkUrl;
+          //media.setAttribute("alt", linkUrl);
+          media.setAttribute("src", link);
+          return
+          ;
+        }
+        console.log('cc',count);
+
+
+
+      })
 
     const container = document.createElement("div");
     container.className = "lightbox-container";
@@ -179,27 +222,55 @@ export function galleryFactory(data) {
     const containerMedia = document.createElement("div");
     containerMedia.className = "lightbox-container-media";
 
+
     let media;
     
-    if (data.hasOwnProperty("image")) {
-      link = `./assets/photo/${photographerId}/${image}`;
-      media = document.createElement("img");
-      media.setAttribute("src", link);
-      media.setAttribute("alt", linkUrl);
-    } else {
-      link = `./assets/photo/${photographerId}/${video}`;
-      media = document.createElement("video");
-      media.setAttribute("src", link);
-      media.setAttribute("alt", linkUrl);
-      media.setAttribute("controls", "controls");
-      media.setAttribute("type", "mp4");
-    }
+        const verifyMediaIsImage = (link) => {
+          console.log( link.includes(".jpg"));
+          
+          return link.includes(".jpg")
+          
+        };
+        //@params data.hasOwnProperty("image")
+        if (verifyMediaIsImage(link)) {
+          console.log("1", link);
+          
+          media = document.createElement("img");
+          media.setAttribute("src", link);
+          media.setAttribute("alt", linkUrl);
+          containerMedia.appendChild(media);
+        } else {
+          
+          media = document.createElement("video");
+          media.setAttribute("src", link);
+          media.setAttribute("alt", linkUrl);
+          media.setAttribute("controls", "controls");
+          media.setAttribute("type", "mp4");
+          console.log("2", link);
+          containerMedia.appendChild(media);
+        }
+        
+    // let media;
+    
+    // if (data.hasOwnProperty("image")) {
+    //   link = `./assets/photo/${photographerId}/${image}`;
+    //   media = document.createElement("img");
+    //   media.setAttribute("src", link);
+    //   media.setAttribute("alt", linkUrl);
+    // } else {
+    //   link = `./assets/photo/${photographerId}/${video}`;
+    //   media = document.createElement("video");
+    //   media.setAttribute("src", link);
+    //   media.setAttribute("alt", linkUrl);
+    //   media.setAttribute("controls", "controls");
+    //   media.setAttribute("type", "mp4");
+    // }
 
     //currentUrl = link;
 
     const titleMedia = document.createElement("h2");
     titleMedia.innerText = title;
-
+ 
     article.appendChild(lightbox);
     lightbox.appendChild(close);
     lightbox.appendChild(next);
