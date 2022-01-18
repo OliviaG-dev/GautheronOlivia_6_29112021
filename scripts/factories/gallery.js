@@ -84,137 +84,52 @@ export function galleryFactory(data) {
     const next = document.createElement("button");
     next.className = "lightbox-next";
     let count = 0;
-    
+
     next.addEventListener("click", () => {
-      count++;
-      
       const url = document.querySelectorAll(".gallery-card");
-      const urlAlt = document.querySelectorAll(".gallery-card");
+      count++;
 
       for (var i = 0; i < url.length; i++) {
-        //console.log(url[i + 1].firstChild.getAttribute("src"));
-        const link = url[i + count].firstChild.getAttribute("src");
-        const linkUrl = urlAlt[i + count].firstChild.getAttribute("alt");
-        //console.log(linkUrl);
-        //console.log(link);
+        //* si count est  
+        if (url[url.length] === url[count]) {
+          count = 0;
+        }
+        const link = url[count].firstChild.getAttribute("src");
+        const mediaTitle = url[count].firstChild.getAttribute("alt");
 
-        if (urlAlt[urlAlt.length - 1] === urlAlt[i + count]) {
-          count = -1;
-        }
-        if (url[url.length - 1] === url[i + count]) {
-          count = -1;
-        }
-        
-        //let media;
-        
-        // const verifyMediaIsImage = (link) => {
-        //   //console.log("ko", link);
-        //   console.log( link.includes(".jpg"));
-        //   return link.includes(".jpg")
-        //   //console.log(link.includes(".jpg"));
-        // };
-        // //@params data.hasOwnProperty("image")
-        // if (verifyMediaIsImage(link)) {
-        //   console.log("1", link);
-        //   //media.innerHTML = "";
-        //   //link = `./assets/photo/${photographerId}/${image}`;
-          
-        //   //media = document.createElement("img");
-        //   media.setAttribute("src", link);
-        //   media.setAttribute("alt", linkUrl);
-        //   //containerMedia.appendChild(media);
-        // } else {
-        //   console.log("2", link);
-        //   //media.innerHTML = "";
-        //   //link = `./assets/photo/${photographerId}/${video}`;
-          
-        //   //media = document.createElement("video");
-        //   media.setAttribute("src", link);
-        //   media.setAttribute("alt", linkUrl);
-        //   media.setAttribute("controls", "controls");
-        //   media.setAttribute("type", "mp4");
-        //   //containerMedia.appendChild(media); 
-        // }
-        
-        //containerMedia.appendChild(media);
-        
         verifyMediaIsImage(link).reload;
-        titleMedia.innerText = linkUrl;
-        media.setAttribute("alt", linkUrl);
+        titleMedia.innerText = mediaTitle;
+        media.setAttribute("alt", mediaTitle);
         media.setAttribute("src", link);
         containerMedia.appendChild(media);
         containerMedia.appendChild(titleMedia);
-        return
-        ;
-        
-        //console.log('fakeImage: ',url[i] && url[i+1].firstChild.getAttribute("data-link"));
+        return;
       }
-      console.log(count);
-      
-      
-      // const article = e.target.parentNode
-      // console.log(article);
-      //console.log("1", currentUrl);
-      // const articles = document.querySelectorAll(".gallery-card")
-      //console.log(articles);
-
-      //for(let key in articles){
-      //console.log("10", key);
-      //console.log("11", articles[key]);
-      //let articleUrl = articles[key].firstChild.getAttribute("data-link")
-      //console.log("5", articleUrl);
-      // (articleUrl == currentUrl) {
-      //console.log("3", key);
-      //console.log(articles[key+1]);
-      //let next = articles[key+1].firstChild.getAttribute("data-link")
-      //console.log("4", next);
-      //break;
-      //}
-      //console.log("2",articleUrl);
-      //console.log(articleUrl);
-      //console.log(article.firstChild.firstChild.getAttribute("data-link"));
-      //}
     });
 
     const prev = document.createElement("button");
-      prev.className = "lightbox-prev";
+    prev.className = "lightbox-prev";
 
+    prev.addEventListener("click", () => {
+      const url = document.querySelectorAll(".gallery-card");
 
-      prev.addEventListener("click", (e) =>{
-        const url = document.querySelectorAll(".gallery-card");
-        //const urlAlt = document.querySelectorAll(".gallery-card");
-console.log(url);
-        for (let i = url.length; i > 0 ; i--) {
-          //console.log(url);
-          //const linkUrl = urlAlt[ i + count].firstChild.getAttribute("alt");
-
-
-          // si jamais je me retrouve en negatif -1
-          // il faut que count = array.length
-          if (count === 0) {
-            count = url.length;
-          }
-
-
-          const link = url[count -1].firstChild.getAttribute("src");
-
-          //console.log(link);
-          //console.log(linkUrl);
-          //console.log(count);
-          count--;
-
-
-          //titleMedia.innerText = linkUrl;
-          //media.setAttribute("alt", linkUrl);
-          media.setAttribute("src", link);
-          return
-          ;
+      for (let i = url.length; i > 0; i--) {
+        //* si count est egale à 0, il faut que count = array.length pour retourner à la fin du tableau
+        if (count === 0) {
+          count = url.length;
         }
-        console.log('cc',count);
 
+        const link = url[count - 1].firstChild.getAttribute("src");
+        const mediaTitle = url[count - 1].firstChild.getAttribute("alt");
 
+        count--;
 
-      })
+        titleMedia.innerText = mediaTitle;
+        media.setAttribute("alt", mediaTitle);
+        media.setAttribute("src", link);
+        return;
+      }
+    });
 
     const container = document.createElement("div");
     container.className = "lightbox-container";
@@ -222,55 +137,34 @@ console.log(url);
     const containerMedia = document.createElement("div");
     containerMedia.className = "lightbox-container-media";
 
-
     let media;
-    
-        const verifyMediaIsImage = (link) => {
-          console.log( link.includes(".jpg"));
-          
-          return link.includes(".jpg")
-          
-        };
-        //@params data.hasOwnProperty("image")
-        if (verifyMediaIsImage(link)) {
-          console.log("1", link);
-          
-          media = document.createElement("img");
-          media.setAttribute("src", link);
-          media.setAttribute("alt", linkUrl);
-          containerMedia.appendChild(media);
-        } else {
-          
-          media = document.createElement("video");
-          media.setAttribute("src", link);
-          media.setAttribute("alt", linkUrl);
-          media.setAttribute("controls", "controls");
-          media.setAttribute("type", "mp4");
-          console.log("2", link);
-          containerMedia.appendChild(media);
-        }
-        
-    // let media;
-    
-    // if (data.hasOwnProperty("image")) {
-    //   link = `./assets/photo/${photographerId}/${image}`;
-    //   media = document.createElement("img");
-    //   media.setAttribute("src", link);
-    //   media.setAttribute("alt", linkUrl);
-    // } else {
-    //   link = `./assets/photo/${photographerId}/${video}`;
-    //   media = document.createElement("video");
-    //   media.setAttribute("src", link);
-    //   media.setAttribute("alt", linkUrl);
-    //   media.setAttribute("controls", "controls");
-    //   media.setAttribute("type", "mp4");
-    // }
 
-    //currentUrl = link;
+    const verifyMediaIsImage = (link) => {
+      console.log(link.includes(".jpg"));
+
+      return link.includes(".jpg");
+    };
+    //@params data.hasOwnProperty("image")
+    if (verifyMediaIsImage(link)) {
+      console.log("1", link);
+
+      media = document.createElement("img");
+      media.setAttribute("src", link);
+      media.setAttribute("alt", linkUrl);
+      containerMedia.appendChild(media);
+    } else {
+      media = document.createElement("video");
+      media.setAttribute("src", link);
+      media.setAttribute("alt", linkUrl);
+      media.setAttribute("controls", "controls");
+      media.setAttribute("type", "mp4");
+      console.log("2", link);
+      containerMedia.appendChild(media);
+    }
 
     const titleMedia = document.createElement("h2");
     titleMedia.innerText = title;
- 
+
     article.appendChild(lightbox);
     lightbox.appendChild(close);
     lightbox.appendChild(next);
