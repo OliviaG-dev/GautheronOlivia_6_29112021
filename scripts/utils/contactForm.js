@@ -1,7 +1,8 @@
 import { getProfil, getPhotographerId } from "./service.js";
 
 const contactButton = document.getElementById("open_button_contact");
-const closeContact = document.getElementById("close_button_contact")
+const closeContact = document.getElementById("close_button_contact");
+const form = document.querySelector("form");
 
 contactButton.addEventListener("click", () => {
     displayModal();
@@ -27,3 +28,31 @@ function closeModal() {
     modal.style.display = "none";
 }
 
+form.addEventListener("submit", (e) => { 
+    e.preventDefault();
+    e.stopPropagation();
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('name');
+    const emailInput = document.getElementById('mail');
+    const messageInput = document.getElementById('comment');
+    
+    if(firstNameInput.value !='' 
+    && lastNameInput.value != ''
+    && emailInput.value != ''
+    && messageInput.value != '') {
+        
+        console.log(`%c Bonjour, ${firstNameInput.value} ${lastNameInput.value}`, "color: red");
+        
+        console.log(`%c Votre message : ${messageInput.value} a bien été envoyé !`, "color: orange" );
+
+        console.log(`%c Une copie du message sera disponible sur votre e-mail : ${emailInput.value}`, "color: pink");
+        
+        firstNameInput.value = null
+        lastNameInput.value = null
+        emailInput.value = null
+        messageInput.value = null
+        
+        closeModal();
+    }
+
+});

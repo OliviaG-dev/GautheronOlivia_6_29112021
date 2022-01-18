@@ -13,7 +13,6 @@ export function galleryFactory(data) {
     const aside = document.createElement("aside");
     aside.className = "gallery-card";
 
-    //////////////////////////////////////////////////////////////////////////////////
     let media;
     if (data.hasOwnProperty("image")) {
       link = `./assets/photo/${photographerId}/${image}`;
@@ -32,10 +31,7 @@ export function galleryFactory(data) {
       modale.classList.add("show");
       modale.classList.remove("hide");
     });
-
-    ////////////////////////////////////////////////////////////////////////////////////
-
-    media.setAttribute("data-link", link);
+    //media.setAttribute("data-link", link);
 
     const div = document.createElement("div");
     div.className = "content-text";
@@ -67,6 +63,8 @@ export function galleryFactory(data) {
     return article;
   }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   function getLightboxDOM() {
     const article = document.querySelector(".lightboxBox");
 
@@ -97,7 +95,7 @@ export function galleryFactory(data) {
         const link = url[count].firstChild.getAttribute("src");
         const mediaTitle = url[count].firstChild.getAttribute("alt");
 
-        verifyMediaIsImage(link).reload;
+        verifyMediaIsImage(link);
         titleMedia.innerText = mediaTitle;
         media.setAttribute("alt", mediaTitle);
         media.setAttribute("src", link);
