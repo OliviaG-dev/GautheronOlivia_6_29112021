@@ -4,7 +4,7 @@ export function galleryFactory(data) {
 
   //console.log(data);
   let link;
-  //let currentUrl;
+  let currentUrl;
 
   function getGalleryDOM() {
     const article = document.createElement("article");
@@ -81,20 +81,37 @@ export function galleryFactory(data) {
 
     const next = document.createElement("button");
     next.className = "lightbox-next";
+
     let count = 0;
 
     next.addEventListener("click", () => {
+      //const currentUrl = document.querySelector(".lightbox-container-media").firstChild.src;
+      //console.log("1", currentUrl);
       const url = document.querySelectorAll(".gallery-card");
+      //console.log("2", url);
+      
+      let currentIndex = 0;
+      url.forEach((item, index) => {
+        const itemUrl = item.firstChild.getAttribute("src")
+        //const tmpUrl = "./" + currentUrl.substring(currentUrl.length+1 - itemUrl.substring(1).length)
+        //console.log(itemUrl + "==" + currentUrl);
+          if (itemUrl == currentUrl){
+            currentIndex = index
+          }
+      })
+
+      //let count = currentIndex;
+      console.log(currentIndex);
       count++;
 
       for (var i = 0; i < url.length; i++) {
-        //* si count est  
-        if (url[url.length] === url[count]) {
+    
+        if (url[url.length-1] === url[count]) {
           count = 0;
         }
         const link = url[count].firstChild.getAttribute("src");
         const mediaTitle = url[count].firstChild.getAttribute("alt");
-
+        
         verifyMediaIsImage(link);
         titleMedia.innerText = mediaTitle;
         media.setAttribute("alt", mediaTitle);
@@ -112,7 +129,6 @@ export function galleryFactory(data) {
       const url = document.querySelectorAll(".gallery-card");
 
       for (let i = url.length; i > 0; i--) {
-        //* si count est egale à 0, il faut que count = array.length pour retourner à la fin du tableau
         if (count === 0) {
           count = url.length;
         }
@@ -138,27 +154,26 @@ export function galleryFactory(data) {
     let media;
 
     const verifyMediaIsImage = (link) => {
-      console.log(link.includes(".jpg"));
-
       return link.includes(".jpg");
     };
-    //@params data.hasOwnProperty("image")
+    
     if (verifyMediaIsImage(link)) {
-      console.log("1", link);
+      //console.log("1", link);
 
       media = document.createElement("img");
       media.setAttribute("src", link);
-      media.setAttribute("alt", linkUrl);
+      media.setAttribute("alt", `${title}`);
       containerMedia.appendChild(media);
     } else {
       media = document.createElement("video");
       media.setAttribute("src", link);
-      media.setAttribute("alt", linkUrl);
+      media.setAttribute("alt", `${title}`); 
       media.setAttribute("controls", "controls");
       media.setAttribute("type", "mp4");
-      console.log("2", link);
+      //console.log("2", link);
       containerMedia.appendChild(media);
     }
+    currentUrl = link;
 
     const titleMedia = document.createElement("h2");
     titleMedia.innerText = title;
