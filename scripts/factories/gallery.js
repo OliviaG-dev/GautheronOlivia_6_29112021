@@ -1,8 +1,7 @@
 export function galleryFactory(data) {
-  const { id, photographerId, title, image, video, likes, date, linkUrl } =
+  const { id, photographerId, title, image, video, likes, date, linkUrl} =
     data;
 
-  //console.log(data);
   let link;
   let currentUrl;
 
@@ -27,9 +26,28 @@ export function galleryFactory(data) {
     }
 
     media.addEventListener("click", function (e) {
-      const modale = getLightboxDOM();
+      const url = document.querySelectorAll(".gallery-card");
+      
+      let currentIndex = 0;
+      
+      url.forEach((item, index) => {
+        const itemUrl = item.firstChild.getAttribute("src");
+        if (itemUrl == link) {
+          currentIndex = index;
+        }
+      });
+      
+      console.log("1",currentIndex);
+      
+      const modale = getLightboxDOM(currentIndex);
+      console.log('currentIndex',currentIndex);
       modale.classList.add("show");
       modale.classList.remove("hide");
+      console.log(currentUrl);
+
+
+
+
     });
     //media.setAttribute("data-link", link);
 
@@ -63,9 +81,9 @@ export function galleryFactory(data) {
     return article;
   }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  function getLightboxDOM() {
+  function getLightboxDOM(currentIndex) {
     const article = document.querySelector(".lightboxBox");
 
     const lightbox = document.createElement("article");
@@ -82,36 +100,30 @@ export function galleryFactory(data) {
     const next = document.createElement("button");
     next.className = "lightbox-next";
 
-    let count = 0;
+    let count = currentIndex;
 
     next.addEventListener("click", () => {
       //const currentUrl = document.querySelector(".lightbox-container-media").firstChild.src;
-      //console.log("1", currentUrl);
       const url = document.querySelectorAll(".gallery-card");
-      //console.log("2", url);
-      
-      let currentIndex = 0;
-      url.forEach((item, index) => {
-        const itemUrl = item.firstChild.getAttribute("src")
-        //const tmpUrl = "./" + currentUrl.substring(currentUrl.length+1 - itemUrl.substring(1).length)
-        //console.log(itemUrl + "==" + currentUrl);
-          if (itemUrl == currentUrl){
-            currentIndex = index
-          }
-      })
+      console.log(url);
 
-      //let count = currentIndex;
-      console.log(currentIndex);
+      //let currentIndex = 0;
+      // url.forEach((item, index) => {
+      //   const itemUrl = item.firstChild.getAttribute("src");
+      //   //const tmpUrl = "./" + currentUrl.substring(currentUrl.length+1 - itemUrl.substring(1).length)
+      //   if (itemUrl == currentUrl) {
+      //     currentIndex = index;
+      //   }
+      // });
+
       count++;
 
       for (var i = 0; i < url.length; i++) {
-    
-        if (url[url.length-1] === url[count]) {
+        if (url[url.length] === url[count]) {
           count = 0;
         }
         const link = url[count].firstChild.getAttribute("src");
         const mediaTitle = url[count].firstChild.getAttribute("alt");
-        
         verifyMediaIsImage(link);
         titleMedia.innerText = mediaTitle;
         media.setAttribute("alt", mediaTitle);
@@ -156,10 +168,8 @@ export function galleryFactory(data) {
     const verifyMediaIsImage = (link) => {
       return link.includes(".jpg");
     };
-    
-    if (verifyMediaIsImage(link)) {
-      //console.log("1", link);
 
+    if (verifyMediaIsImage(link)) {
       media = document.createElement("img");
       media.setAttribute("src", link);
       media.setAttribute("alt", `${title}`);
@@ -167,10 +177,10 @@ export function galleryFactory(data) {
     } else {
       media = document.createElement("video");
       media.setAttribute("src", link);
-      media.setAttribute("alt", `${title}`); 
+      media.setAttribute("alt", `${title}`);
       media.setAttribute("controls", "controls");
       media.setAttribute("type", "mp4");
-      //console.log("2", link);
+
       containerMedia.appendChild(media);
     }
     currentUrl = link;
