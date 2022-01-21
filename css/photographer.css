@@ -100,6 +100,7 @@ form textarea {
     border: none;
     border-radius: 5px;
     font-size: 25px;
+    margin-bottom: 30px;
 }
 
 
@@ -115,6 +116,7 @@ form textarea {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    filter: drop-shadow(0 0 0.5rem rgba(190, 186, 187, 0.269));
 }
 
 .contact_button {
@@ -378,6 +380,7 @@ form textarea {
     .photograph-header h1 {
         font-size: 60px;
         text-align: center;
+        margin: 0;
     }
 
     .content-profil {
@@ -390,6 +393,7 @@ form textarea {
         width: 600px;
         height: 300px;
         margin: 0;
+        filter: drop-shadow(0 0 0.95rem rgba(190, 186, 187, 0.671));
     }
 
     .contact_button {
@@ -461,10 +465,10 @@ form textarea {
         font-size: 95px;
     }
 
-    #close_button_contact {
+    /* #close_button_contact {
         align-self: self-end;
         height: 60px;
-    }
+    } */
 
     #contact_form label {
         margin-top: 36px;
@@ -479,6 +483,10 @@ form textarea {
     #contact_form textarea {
         margin-bottom: 60px;
         font-size: 40px;
+    }
+    
+    #contact_form button {
+        align-self: center;
     }
 
     /************Lightbox***********/

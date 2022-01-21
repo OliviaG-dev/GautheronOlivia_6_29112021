@@ -19,7 +19,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 90px;
+    height: 150px;
 }
 
 h1 {
@@ -34,14 +34,14 @@ h1 {
 
 .logo {
     height: 50px;
-    margin-left: 50px;
+    margin-left: 135px;
 }
 
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin-top: 100px;
+    margin-top: 60px;
     margin-bottom: 100px;
 }
 
@@ -106,13 +106,13 @@ h1 {
     header {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items: center;
-        height: 190px;
+        height: 250px;
     }
 
     .logo {
-        margin-top: 25px;
+        margin: 0;
         height: 80px;
     }
 
@@ -131,17 +131,19 @@ h1 {
     }
 
     .photographer_section article {
-        background: rgb(241, 240, 238);
+        background: #FAFAFA;
         border-radius: 15px;
         padding-top: 25px;
         width: 80%;
         align-self: center;
         height: 360px;
+        filter: drop-shadow(0 0 0.95rem rgba(190, 186, 187, 0.671));
     }
     
 
     .lien-profil img {
-        border-radius: 5%;
-        width: 600px;
+        border-radius: 0 25px;
+        width: 636px;
+        flex-shrink: inherit;
     }
 } 
