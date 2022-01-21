@@ -29,7 +29,6 @@ export function galleryFactory(data) {
       const url = document.querySelectorAll(".gallery-card");
       
       let currentIndex = 0;
-      
       url.forEach((item, index) => {
         const itemUrl = item.firstChild.getAttribute("src");
         if (itemUrl == link) {
@@ -37,19 +36,11 @@ export function galleryFactory(data) {
         }
       });
       
-      console.log("1",currentIndex);
-      
       const modale = getLightboxDOM(currentIndex);
-      console.log('currentIndex',currentIndex);
       modale.classList.add("show");
       modale.classList.remove("hide");
-      console.log(currentUrl);
-
-
-
-
     });
-    //media.setAttribute("data-link", link);
+    
 
     const div = document.createElement("div");
     div.className = "content-text";
@@ -103,18 +94,8 @@ export function galleryFactory(data) {
     let count = currentIndex;
 
     next.addEventListener("click", () => {
-      //const currentUrl = document.querySelector(".lightbox-container-media").firstChild.src;
       const url = document.querySelectorAll(".gallery-card");
-      console.log(url);
-
-      //let currentIndex = 0;
-      // url.forEach((item, index) => {
-      //   const itemUrl = item.firstChild.getAttribute("src");
-      //   //const tmpUrl = "./" + currentUrl.substring(currentUrl.length+1 - itemUrl.substring(1).length)
-      //   if (itemUrl == currentUrl) {
-      //     currentIndex = index;
-      //   }
-      // });
+      
 
       count++;
 

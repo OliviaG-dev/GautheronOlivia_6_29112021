@@ -64,12 +64,10 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 .profil-content h3 {
     color: #901C1C;
-
 }
 
 .profil-content span {
@@ -79,7 +77,6 @@ h1 {
 
 .photographer_section .profil-content p {
     font-size: 15px;
-
 }
 
 .lien-profil {
@@ -94,7 +91,6 @@ h1 {
     color: black;
 }
 
-
 .lien-profil img {
     margin-bottom: 20px;
     height: 200px;
@@ -103,3 +99,49 @@ h1 {
     border-radius: 50%;
     filter: drop-shadow(0 0 0.95rem rgba(190, 186, 187, 0.671));
 }
+
+/**********************Media ******************************/
+
+@media (max-width: 1025px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 190px;
+    }
+
+    .logo {
+        margin-top: 25px;
+        height: 80px;
+    }
+
+    h1 {
+        align-self: baseline;
+        margin-left: 50px;
+        font-size: 50px;
+    }
+
+    .photographer_section {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .photographer_section article {
+        background: rgb(241, 240, 238);
+        border-radius: 15px;
+        padding-top: 25px;
+        width: 80%;
+        align-self: center;
+        height: 360px;
+    }
+    
+
+    .lien-profil img {
+        border-radius: 5%;
+        width: 600px;
+    }
+} 
