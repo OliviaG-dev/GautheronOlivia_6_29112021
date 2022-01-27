@@ -47,6 +47,7 @@ export function photographerFactory(data) {
 
     const h1 = document.createElement("h1");
     h1.textContent = name;
+    h1.ariaLabel = "name";
 
     const div = document.createElement("div");
     div.className = "content-profil";

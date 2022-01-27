@@ -47,6 +47,7 @@ async function createFooter(profilId, gallery) {
 
   const icone = document.createElement("i");
   icone.className = "fas fa-heart heart";
+  icone.ariaLabel = "likes";
 
   const priceDays = document.createElement("span");
   priceDays.textContent = `${price}€/jour`;

@@ -27,7 +27,6 @@ export function galleryFactory(data) {
       media.setAttribute("src", link);
       media.setAttribute("alt", `${title}`);
     }
-
     
     media.addEventListener("click", function (e) {
       const url = document.querySelectorAll(".gallery-card");
@@ -63,6 +62,7 @@ export function galleryFactory(data) {
 
     const icone = document.createElement("i");
     icone.className = "add-likes far fa-heart heart";
+    icone.ariaLabel = "likes";
     icone.id = id;
 
     article.appendChild(aside);
@@ -116,7 +116,7 @@ export function galleryFactory(data) {
         }
         const link = url[count].firstChild.getAttribute("src");
         const mediaTitle = url[count].firstChild.getAttribute("alt");
-        verifyMediaIsImage(link);
+        //verifyMediaIsImage(link);
         titleMedia.innerText = mediaTitle;
         media.setAttribute("alt", mediaTitle);
         media.setAttribute("src", link);
@@ -138,7 +138,7 @@ export function galleryFactory(data) {
         }
         const link = url[count].firstChild.getAttribute("src");
         const mediaTitle = url[count].firstChild.getAttribute("alt");
-        verifyMediaIsImage(link);
+        //verifyMediaIsImage(link);
         titleMedia.innerText = mediaTitle;
         media.setAttribute("alt", mediaTitle);
         media.setAttribute("src", link);
@@ -202,25 +202,39 @@ export function galleryFactory(data) {
     containerMedia.className = "lightbox-container-media";
 
     let media;
-
-    const verifyMediaIsImage = (link) => {
-      return link.includes(".jpg");
-    };
-
-    if (verifyMediaIsImage(link)) {
+    if (data.hasOwnProperty("image")) {
+      link = `./assets/photo/${photographerId}/${image}`;
       media = document.createElement("img");
       media.setAttribute("src", link);
       media.setAttribute("alt", `${title}`);
-      containerMedia.appendChild(media);
     } else {
+      link = `./assets/photo/${photographerId}/${video}`;
       media = document.createElement("video");
       media.setAttribute("src", link);
       media.setAttribute("alt", `${title}`);
       media.setAttribute("controls", "controls");
       media.setAttribute("type", "mp4");
-
-      containerMedia.appendChild(media);
     }
+
+    // let media;
+    // const verifyMediaIsImage = (link) => {
+    //   return link.includes(".jpg");
+    // };
+
+    // if (verifyMediaIsImage(link)) {
+    //   media = document.createElement("img");
+    //   media.setAttribute("src", link);
+    //   media.setAttribute("alt", `${title}`);
+    //   containerMedia.appendChild(media);
+    // } else {
+    //   media = document.createElement("video");
+    //   media.setAttribute("src", link);
+    //   media.setAttribute("alt", `${title}`);
+    //   media.setAttribute("controls", "controls");
+    //   media.setAttribute("type", "mp4");
+    //   containerMedia.appendChild(media);
+    // }
+
     currentUrl = link;
 
     const titleMedia = document.createElement("h2");
