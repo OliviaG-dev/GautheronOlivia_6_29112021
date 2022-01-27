@@ -1,3 +1,6 @@
+//import { OpenLightbox } from '../utils/lightbox.js';
+
+
 export function galleryFactory(data) {
   const { id, photographerId, title, image, video, likes, date, linkUrl} =
     data;
@@ -25,6 +28,7 @@ export function galleryFactory(data) {
       media.setAttribute("alt", `${title}`);
     }
 
+    
     media.addEventListener("click", function (e) {
       const url = document.querySelectorAll(".gallery-card");
       
@@ -82,11 +86,20 @@ export function galleryFactory(data) {
 
     const close = document.createElement("button");
     close.className = "lightbox-close";
-
-    close.addEventListener("click", function () {
+    
+    close.addEventListener("click", function() {
       const modale = getLightboxDOM();
       modale.classList.add("hide");
     });
+    
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') {
+        console.log("yessssssss");
+        const modale = getLightboxDOM();
+        modale.classList.add("hide");
+      }
+      })
+
 
     const next = document.createElement("button");
     next.className = "lightbox-next";
@@ -95,8 +108,28 @@ export function galleryFactory(data) {
 
     next.addEventListener("click", () => {
       const url = document.querySelectorAll(".gallery-card");
+      count++;
       
-
+      for (var i = 0; i < url.length; i++) {
+        if (url[url.length] === url[count]) {
+          count = 0;
+        }
+        const link = url[count].firstChild.getAttribute("src");
+        const mediaTitle = url[count].firstChild.getAttribute("alt");
+        verifyMediaIsImage(link);
+        titleMedia.innerText = mediaTitle;
+        media.setAttribute("alt", mediaTitle);
+        media.setAttribute("src", link);
+        containerMedia.appendChild(media);
+        containerMedia.appendChild(titleMedia);
+        return;
+      }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowRight') {
+        console.log("yessssssss rigth");
+        const url = document.querySelectorAll(".gallery-card");
       count++;
 
       for (var i = 0; i < url.length; i++) {
@@ -113,7 +146,8 @@ export function galleryFactory(data) {
         containerMedia.appendChild(titleMedia);
         return;
       }
-    });
+      }
+    })
 
     const prev = document.createElement("button");
     prev.className = "lightbox-prev";
@@ -137,6 +171,29 @@ export function galleryFactory(data) {
         return;
       }
     });
+
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowLeft') {
+        console.log("yessssssss left");
+        const url = document.querySelectorAll(".gallery-card");
+
+      for (let i = url.length; i > 0; i--) {
+        if (count === 0) {
+          count = url.length;
+        }
+
+        const link = url[count - 1].firstChild.getAttribute("src");
+        const mediaTitle = url[count - 1].firstChild.getAttribute("alt");
+
+        count--;
+
+        titleMedia.innerText = mediaTitle;
+        media.setAttribute("alt", mediaTitle);
+        media.setAttribute("src", link);
+        return;
+      }
+      }
+    })
 
     const container = document.createElement("div");
     container.className = "lightbox-container";

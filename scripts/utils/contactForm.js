@@ -13,7 +13,6 @@ closeContact.addEventListener("click", () => {
 })
 
 
-
 async function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
@@ -27,6 +26,13 @@ function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
 }
+
+document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') {
+        console.log("yessssssss contact!");
+        closeModal();
+    }
+    })
 
 form.addEventListener("submit", (e) => { 
     e.preventDefault();
