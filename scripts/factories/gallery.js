@@ -100,7 +100,6 @@ export function galleryFactory(data) {
       }
       })
 
-
     const next = document.createElement("button");
     next.className = "lightbox-next";
 
