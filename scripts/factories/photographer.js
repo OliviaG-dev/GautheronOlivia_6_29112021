@@ -13,7 +13,7 @@ export function photographerFactory(data) {
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", `Une photo de ${name}`);
+    img.setAttribute("alt", `${name}`);
 
     const h2 = document.createElement("h2");
     h2.textContent = name;
@@ -48,24 +48,28 @@ export function photographerFactory(data) {
     const h1 = document.createElement("h1");
     h1.textContent = name;
     h1.ariaLabel = "name";
+    h1.setAttribute("Tabindex", "0")
 
     const div = document.createElement("div");
     div.className = "content-profil";
 
-    const h3 = document.createElement("h3");
-    h3.textContent = `${city}, ${country}`;
+    const h2 = document.createElement("h2");
+    h2.textContent = `${city}, ${country}`;
+    h2.setAttribute("Tabindex", "0")
 
     const p = document.createElement("p");
     p.textContent = tagline;
+    p.setAttribute("Tabindex", "0")
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `Une photo de ${name}`);
+    img.setAttribute("Tabindex", "0")
 
     section.appendChild(content);
     content.appendChild(h1);
     content.appendChild(div);
-    div.appendChild(h3);
+    div.appendChild(h2);
     div.appendChild(p);
     section.appendChild(img);
 

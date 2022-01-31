@@ -13,28 +13,46 @@ export async function addLikes() {
     toggleLikes[photo.id]= false
   }
   const heartIcons = document.querySelectorAll(".add-likes");
-  //const likeCount =  target.parentNode.children[0].innerText;
 
   heartIcons.forEach((icon) =>
     icon.addEventListener("click", (event) => {
       const heartSelected = parseFloat(event.target.id);
       photographerDatas.forEach((data) => {
-        //console.log(toggleLikes[data.id] + "&&" + data.id +"===" + heartSelected) 
         if (!toggleLikes[data.id] && data.id === heartSelected) {
-          //console.log("ok");
-          //if (toggleLike && data.id === heartSelected) {
           event.target.parentNode.children[0].innerText = data.likes += 1;
           event.target.classList.replace("far", "fas");
           toggleLikes[data.id]=!toggleLikes[data.id] 
         } else if (toggleLikes[data.id] && data.id === heartSelected) {
-          //console.log("ko");
           event.target.parentNode.children[0].innerText = data.likes -= 1;
           event.target.classList.replace("fas", "far");
           toggleLikes[data.id]=!toggleLikes[data.id] 
         }
-        //toggleLike = !toggleLike;
       });
       countTotalLike(photographerDatas);
     })
   );
+
+  //a voir si ça marche !!
+  heartIcons.forEach((icon) =>
+      icon.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          console.log("yeahhhhhhh 2");
+      const heartSelected = parseFloat(e.target.id);
+      photographerDatas.forEach((data) => {
+        if (!toggleLikes[data.id] && data.id === heartSelected) {
+          e.target.parentNode.children[0].innerText = data.likes += 1;
+          e.target.classList.replace("far", "fas");
+          toggleLikes[data.id]=!toggleLikes[data.id] 
+        } else if (toggleLikes[data.id] && data.id === heartSelected) {
+          e.target.parentNode.children[0].innerText = data.likes -= 1;
+          e.target.classList.replace("fas", "far");
+          toggleLikes[data.id]=!toggleLikes[data.id] 
+        }
+      });
+      countTotalLike(photographerDatas);
+    }
+    })
+  );
+
+
 }

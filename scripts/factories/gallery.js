@@ -5,7 +5,7 @@ export function galleryFactory(data) {
     data;
 
   let link;
-  let currentUrl;
+  //let currentUrl;
 
   function getGalleryDOM() {
     const article = document.createElement("article");
@@ -43,6 +43,24 @@ export function galleryFactory(data) {
       modale.classList.remove("hide");
     });
 
+    media.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const url = document.querySelectorAll(".gallery-card");
+      let currentIndex = 0;
+      url.forEach((item, index) => {
+        const itemUrl = item.firstChild.getAttribute("src");
+        if (itemUrl == link) {
+          currentIndex = index;
+        }
+      });
+        const modale = getLightboxDOM(currentIndex);
+        modale.classList.add("show");
+        modale.classList.remove("hide");;
+      }
+    });
+
+    media.setAttribute("Tabindex", "0")
+
     const div = document.createElement("div");
     div.className = "content-text";
 
@@ -57,11 +75,15 @@ export function galleryFactory(data) {
     const like = document.createElement("span");
     like.className = "like-number";
     like.textContent = likes;
+    like.setAttribute("Tabindex", "0");
 
     const icone = document.createElement("i");
     icone.className = "add-likes far fa-heart heart";
-    icone.ariaLabel = "likes";
+    icone.ariaLabel = "add likes";
     icone.id = id;
+    icone.setAttribute("Tabindex", "0");
+    
+
 
     article.appendChild(aside);
     aside.appendChild(media);
@@ -84,6 +106,7 @@ export function galleryFactory(data) {
 
     const close = document.createElement("button");
     close.className = "lightbox-close";
+    close.ariaLabel = "close dialog";
 
     close.addEventListener("click", function () {
       const modale = getLightboxDOM();
@@ -99,6 +122,7 @@ export function galleryFactory(data) {
 
     const next = document.createElement("button");
     next.className = "lightbox-next";
+    next.ariaLabel = "next média";
 
     let count = currentIndex;
 
@@ -120,15 +144,14 @@ export function galleryFactory(data) {
         };
 
         if (verifyMediaIsImage(link)) {
-          containerMedia.innerHTML="";
+          containerMedia.innerHTML = "";
           media = document.createElement("img");
         } else {
-          containerMedia.innerHTML="";
-          media = document.createElement("video");        
+          containerMedia.innerHTML = "";
+          media = document.createElement("video");
           media.setAttribute("controls", "controls");
           media.setAttribute("type", "mp4");
         }
-
 
         titleMedia.innerText = mediaTitle;
         media.setAttribute("alt", mediaTitle);
@@ -154,13 +177,13 @@ export function galleryFactory(data) {
           const verifyMediaIsImage = (link) => {
             return link.includes(".jpg");
           };
-  
+
           if (verifyMediaIsImage(link)) {
-            containerMedia.innerHTML="";
+            containerMedia.innerHTML = "";
             media = document.createElement("img");
           } else {
-            containerMedia.innerHTML="";
-            media = document.createElement("video");        
+            containerMedia.innerHTML = "";
+            media = document.createElement("video");
             media.setAttribute("controls", "controls");
             media.setAttribute("type", "mp4");
           }
@@ -177,6 +200,7 @@ export function galleryFactory(data) {
 
     const prev = document.createElement("button");
     prev.className = "lightbox-prev";
+    prev.ariaLabel = "before média";
 
     prev.addEventListener("click", () => {
       const url = document.querySelectorAll(".gallery-card");
@@ -195,11 +219,11 @@ export function galleryFactory(data) {
         };
 
         if (verifyMediaIsImage(link)) {
-          containerMedia.innerHTML="";
+          containerMedia.innerHTML = "";
           media = document.createElement("img");
         } else {
-          containerMedia.innerHTML="";
-          media = document.createElement("video");        
+          containerMedia.innerHTML = "";
+          media = document.createElement("video");
           media.setAttribute("controls", "controls");
           media.setAttribute("type", "mp4");
         }
@@ -230,19 +254,18 @@ export function galleryFactory(data) {
           const verifyMediaIsImage = (link) => {
             return link.includes(".jpg");
           };
-  
+
           if (verifyMediaIsImage(link)) {
-            containerMedia.innerHTML="";
+            containerMedia.innerHTML = "";
             media = document.createElement("img");
           } else {
-            containerMedia.innerHTML="";
-            media = document.createElement("video");        
+            containerMedia.innerHTML = "";
+            media = document.createElement("video");
             media.setAttribute("controls", "controls");
             media.setAttribute("type", "mp4");
           }
 
           count--;
-          
           titleMedia.innerText = mediaTitle;
           media.setAttribute("alt", mediaTitle);
           media.setAttribute("src", link);
@@ -274,7 +297,7 @@ export function galleryFactory(data) {
       media.setAttribute("type", "mp4");
     }
 
-    currentUrl = link;
+    //currentUrl = link;
 
     const titleMedia = document.createElement("h2");
     titleMedia.innerText = title;

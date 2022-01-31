@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -12,13 +12,13 @@
 </head>
 
 <body>
-  <header>
-    <a href="./">
-      <img src="assets/images/logo.png" class="logo" />
+  <header  role="header">
+    <a href="index.html" tabindex="0">
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
     </a>
   </header>
   
-  <main id="main">
+  <main id="main" role="main">
 
     <section class="photograph-header">
       <button class="contact_button" id="open_button_contact">Contactez-moi</button>
@@ -29,7 +29,7 @@
       <article class="gallery-filter">
         <div class="filter-label"><label for="label-selection">Trier par</label></div>
         <div class="filter-select">
-          <select name="filter" id="filters">
+          <select name="filter" id="filters" label="filter">
             <option class="select" value="popularity">Popularité</option>
             <option class="select" value="date">Date</option>
             <option class="select" value="title">Titre</option>
@@ -48,14 +48,14 @@
 
     </section>
     
-    <section id="contact_modal">
+    <section id="contact_modal" tabindex="-1">
       <div class="modal">
         <header>
           <div class="container_header_modal_title">
             <h2 class="title_modal_contact">Contactez-moi</h2>
             <h3 class="name_modal_photographer"></h3>
           </div>
-          <img src="assets/icons/close.svg" id="close_button_contact" />
+          <img src="assets/icons/close.svg" alt="close Contact form" id="close_button_contact" tabindex="0" />
         </header>
         <form id="contact_form">     
             <label for="firstName">Prénom</label>
