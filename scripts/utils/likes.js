@@ -1,10 +1,17 @@
 import { getPhotographerId, getGalleryData } from "../utils/service.js";
 
+/**
+ * function which allows to increase the total likes of the footer.
+ * @param {*} likes 
+ */
 export async function countTotalLike(likes) {
   const footerLikes = document.getElementById("footer__like-count");
   footerLikes.textContent = likes.reduce((acc, curr) => acc + curr.likes, 0);
 }
 
+/**
+ * function that uses data to add a like to media.
+ */
 export async function addLikes() {
   let toggleLikes = [];
   const photographerDatas = await getGalleryData(getPhotographerId());
@@ -13,7 +20,8 @@ export async function addLikes() {
     toggleLikes[photo.id]= false
   }
   const heartIcons = document.querySelectorAll(".add-likes");
-
+  
+  //for each of the icons, we put a listener that allows you to add and remove a like.
   heartIcons.forEach((icon) =>
     icon.addEventListener("click", (event) => {
       const heartSelected = parseFloat(event.target.id);
@@ -32,11 +40,10 @@ export async function addLikes() {
     })
   );
 
-  //a voir si ça marche !!
+  
   heartIcons.forEach((icon) =>
       icon.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
-          console.log("yeahhhhhhh 2");
       const heartSelected = parseFloat(e.target.id);
       photographerDatas.forEach((data) => {
         if (!toggleLikes[data.id] && data.id === heartSelected) {

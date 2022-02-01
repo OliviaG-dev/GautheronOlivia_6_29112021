@@ -12,9 +12,6 @@ closeContact.addEventListener("click", () => {
     closeModal();
 })
 
-/**
- * Open Modal Contact
- */
 async function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";

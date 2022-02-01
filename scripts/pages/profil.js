@@ -62,7 +62,7 @@ async function createFooter(profilId, gallery) {
   addLikes();
 }
 
-///////////////////////////////////////////////////////
+/////////////////////////////////////////////////////// 
 
 async function getMedias(filter) {
   const media = await getGalleryData(getPhotographerId());
@@ -110,7 +110,6 @@ async function profilInit() {
   getGallery(gallery);
   createFooter(profilId, gallery);
   filtersMedia();
-
 }
 
 profilInit();
