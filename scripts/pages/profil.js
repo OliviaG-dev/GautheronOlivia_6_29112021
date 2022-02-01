@@ -87,6 +87,7 @@ async function getMedias(filter) {
       });
   }
   getGallery(mediaSorted);
+  addLikes();
 }
 
 function filtersMedia() {
