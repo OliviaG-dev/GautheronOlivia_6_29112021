@@ -12,7 +12,9 @@ closeContact.addEventListener("click", () => {
     closeModal();
 })
 
-
+/**
+ * Open Modal Contact
+ */
 async function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
@@ -20,6 +22,7 @@ async function displayModal() {
     const photographerProfil = await getProfil(getPhotographerId());
     const photographerName = photographerProfil.name;
     NameTitle.textContent = photographerName;
+    modal.ariaLabel = `Contact me ${photographerName}`; 
 }
 
 function closeModal() {

@@ -1,12 +1,12 @@
 export function photographerFactory(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
-  //console.log("1", data);
 
   const picture = `assets/photographers/${portrait}`;
 
+
   function getUserCardDOM() {
     const article = document.createElement("article");
-
+    
     const a = document.createElement("a");
     a.className = "lien-profil";
     a.setAttribute("href", `./photographer.html?id=${id}`);
@@ -40,6 +40,8 @@ export function photographerFactory(data) {
     return article;
   }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   function getUserProfilDOM() {
     const section = document.querySelector(".photograph-header");
 
@@ -48,23 +50,23 @@ export function photographerFactory(data) {
     const h1 = document.createElement("h1");
     h1.textContent = name;
     h1.ariaLabel = "name";
-    h1.setAttribute("Tabindex", "0")
+    h1.setAttribute("Tabindex", "1")
 
     const div = document.createElement("div");
     div.className = "content-profil";
 
     const h2 = document.createElement("h2");
     h2.textContent = `${city}, ${country}`;
-    h2.setAttribute("Tabindex", "0")
+    h2.setAttribute("Tabindex", "1")
 
     const p = document.createElement("p");
     p.textContent = tagline;
-    p.setAttribute("Tabindex", "0")
+    p.setAttribute("Tabindex", "1")
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", `Une photo de ${name}`);
-    img.setAttribute("Tabindex", "0")
+    img.setAttribute("alt", `${name}`);
+    img.setAttribute("Tabindex", "1")
 
     section.appendChild(content);
     content.appendChild(h1);

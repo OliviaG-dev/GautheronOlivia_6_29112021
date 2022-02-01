@@ -44,7 +44,7 @@ async function createFooter(profilId, gallery) {
 
   const likeTotal = document.createElement("span");
   likeTotal.setAttribute("id", "footer__like-count");
-  likeTotal.setAttribute("Tabindex", "0");
+  likeTotal.setAttribute("Tabindex", "1");
 
   const icone = document.createElement("i");
   icone.className = "fas fa-heart heart";
@@ -52,7 +52,7 @@ async function createFooter(profilId, gallery) {
 
   const priceDays = document.createElement("span");
   priceDays.textContent = `${price}€/jour`;
-  priceDays.setAttribute("Tabindex", "0");
+  priceDays.setAttribute("Tabindex", "1");
 
   body.appendChild(footer);
   footer.appendChild(likeTotal);

@@ -5,38 +5,42 @@
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <link href="css/photographer.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
+  <meta name="description" content="A photographer's website">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <script src="https://kit.fontawesome.com/7cc1ff1b73.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-  <title>Fisheye - photographe </title>
+  <title>Photographer | Fisheye</title>
 </head>
 
 <body>
-  <header  role="header">
-    <a href="index.html" tabindex="0">
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+  <header role="header">
+    <a href="index.html" tabindex="1">
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
     </a>
   </header>
-  
+
   <main id="main" role="main">
 
+    <!------------------------------- HEADER----------------------------------------------------------->
     <section class="photograph-header">
-      <button class="contact_button" id="open_button_contact">Contactez-moi</button>
+      <button class="contact_button" id="open_button_contact" name="Contact Me" tabindex="1">Contactez-moi</button>
     </section>
-
+    
+    <!------------------------------- GALERY----------------------------------------------------------->
     <section class="gallery">
       
+      <!-------------------- FILTER------------------------>
       <article class="gallery-filter">
-        <div class="filter-label"><label for="label-selection">Trier par</label></div>
+        <div class="filter-label"><label for="filters">Trier par</label></div>
         <div class="filter-select">
-          <select name="filter" id="filters" label="filter">
+          <select name="Order by" id="filters" label="filter" tabindex="1">
             <option class="select" value="popularity">Popularité</option>
             <option class="select" value="date">Date</option>
             <option class="select" value="title">Titre</option>
           </select>
         </div>
       </article>
-
+      <!--------------------BODY-GALERY-------------------->
       <article class="body-gallery">
       </article>
 
@@ -48,32 +52,32 @@
 
     </section>
     
-    <section id="contact_modal" tabindex="-1">
+    <!--------------------------------MODAL CONTACT----------------------------------------------------------->
+    <section id="contact_modal">
       <div class="modal">
         <header>
           <div class="container_header_modal_title">
             <h2 class="title_modal_contact">Contactez-moi</h2>
             <h3 class="name_modal_photographer"></h3>
           </div>
-          <img src="assets/icons/close.svg" alt="close Contact form" id="close_button_contact" tabindex="0" />
+          <img src="assets/icons/close.svg" alt="close Contact form" id="close_button_contact" tabindex="2" />
         </header>
-        <form id="contact_form">     
-            <label for="firstName">Prénom</label>
-            <input type="text" id="firstName" name="user_firstname" />
-            <label for="name">Nom</label>
-            <input type="text" id="name" name="user_name" />
-            <label for="mail">Email</label>
-            <input type="email" id="mail" name="user_mail"/>
-            <label for="comment">Votre message</label>
-            <textarea id="comment" name="user_comment"></textarea>         
-            <button class="contact_button"  type="submit" aria-label="Envoyer">Envoyer</button>
+        <form id="contact_form">
+          <label for="firstName">Prénom</label>
+          <input type="text" id="firstName" name="First name" required tabindex="2"/>
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="Last name" required tabindex="2"/>
+          <label for="mail">Email</label>
+          <input type="email" id="mail" name="Email" required tabindex="2"/>
+          <label for="comment">Votre message</label>
+          <textarea id="comment" name="Your message" required tabindex="2"></textarea>
+          <button class="contact_button" type="submit" aria-label="send">Envoyer</button>
         </form>
       </div>
     </section>
-    </main>
+  </main>
 
-    <script src="scripts/pages/profil.js" type="module"></script>
-    <script src="scripts/utils/contactForm.js" type="module"></script>
+  <script src="scripts/pages/profil.js" type="module"></script>
+  <script src="scripts/utils/contactForm.js" type="module"></script>
 </body>
-
 </html>

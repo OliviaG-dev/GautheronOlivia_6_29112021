@@ -1,11 +1,10 @@
-//import { OpenLightbox } from '../utils/lightbox.js';
 
 export function galleryFactory(data) {
   const { id, photographerId, title, image, video, likes, date, linkUrl } =
     data;
 
   let link;
-  //let currentUrl;
+
 
   function getGalleryDOM() {
     const article = document.createElement("article");
@@ -13,7 +12,8 @@ export function galleryFactory(data) {
 
     const aside = document.createElement("aside");
     aside.className = "gallery-card";
-
+    
+    /********************Média************************/
     let media;
     if (data.hasOwnProperty("image")) {
       link = `./assets/photo/${photographerId}/${image}`;
@@ -26,10 +26,10 @@ export function galleryFactory(data) {
       media.setAttribute("src", link);
       media.setAttribute("alt", `${title}`);
     }
-
-    media.addEventListener("click", function (e) {
+    
+    /****************Listener Média******************/
+    media.addEventListener("click", function () {
       const url = document.querySelectorAll(".gallery-card");
-
       let currentIndex = 0;
       url.forEach((item, index) => {
         const itemUrl = item.firstChild.getAttribute("src");
@@ -55,33 +55,34 @@ export function galleryFactory(data) {
       });
         const modale = getLightboxDOM(currentIndex);
         modale.classList.add("show");
-        modale.classList.remove("hide");;
+        modale.classList.remove("hide");
       }
     });
 
-    media.setAttribute("Tabindex", "0")
+    media.setAttribute("Tabindex", "1");
+    media.ariaLabel = "image closeup view";
 
+    /********************Title************************/
     const div = document.createElement("div");
     div.className = "content-text";
 
-    //title
     const titre = document.createElement("h3");
     titre.className = "title-gallery";
     titre.textContent = title;
 
+    /********************likes************************/
     const contentLike = document.createElement("div");
 
-    //likes
     const like = document.createElement("span");
     like.className = "like-number";
     like.textContent = likes;
-    like.setAttribute("Tabindex", "0");
+    like.setAttribute("Tabindex", "1");
 
     const icone = document.createElement("i");
     icone.className = "add-likes far fa-heart heart";
     icone.ariaLabel = "add likes";
     icone.id = id;
-    icone.setAttribute("Tabindex", "0");
+    icone.setAttribute("Tabindex", "1");
     
 
 
@@ -97,6 +98,9 @@ export function galleryFactory(data) {
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   function getLightboxDOM(currentIndex) {
     const article = document.querySelector(".lightboxBox");
@@ -104,10 +108,11 @@ export function galleryFactory(data) {
     const lightbox = document.createElement("article");
     lightbox.className = "lightbox";
 
+    /********************Close************************/
     const close = document.createElement("button");
     close.className = "lightbox-close";
     close.ariaLabel = "close dialog";
-
+    /****Listener Close****/
     close.addEventListener("click", function () {
       const modale = getLightboxDOM();
       modale.classList.add("hide");
@@ -119,13 +124,14 @@ export function galleryFactory(data) {
         modale.classList.add("hide");
       }
     });
-
+    
+    /********************Next************************/
     const next = document.createElement("button");
     next.className = "lightbox-next";
     next.ariaLabel = "next média";
 
     let count = currentIndex;
-
+    /****Listener Next****/
     next.addEventListener("click", () => {
       const url = document.querySelectorAll(".gallery-card");
       count++;
@@ -197,11 +203,12 @@ export function galleryFactory(data) {
         }
       }
     });
-
+    
+    /********************Previous************************/
     const prev = document.createElement("button");
     prev.className = "lightbox-prev";
     prev.ariaLabel = "before média";
-
+    /****Listener Previous****/
     prev.addEventListener("click", () => {
       const url = document.querySelectorAll(".gallery-card");
 
@@ -276,6 +283,7 @@ export function galleryFactory(data) {
       }
     });
 
+    /********************Lightbox************************/
     const container = document.createElement("div");
     container.className = "lightbox-container";
 
@@ -296,8 +304,6 @@ export function galleryFactory(data) {
       media.setAttribute("controls", "controls");
       media.setAttribute("type", "mp4");
     }
-
-    //currentUrl = link;
 
     const titleMedia = document.createElement("h2");
     titleMedia.innerText = title;
