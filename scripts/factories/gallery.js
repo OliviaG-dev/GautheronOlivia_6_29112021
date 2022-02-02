@@ -46,7 +46,9 @@ export function galleryFactory(data) {
     media.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         const url = document.querySelectorAll(".gallery-card");
+
       let currentIndex = 0;
+      
       url.forEach((item, index) => {
         const itemUrl = item.firstChild.getAttribute("src");
         if (itemUrl == link) {
@@ -131,6 +133,7 @@ export function galleryFactory(data) {
     next.ariaLabel = "next média";
 
     let count = currentIndex;
+
     /****Listener Next****/
     next.addEventListener("click", () => {
       const url = document.querySelectorAll(".gallery-card");
@@ -208,6 +211,7 @@ export function galleryFactory(data) {
     const prev = document.createElement("button");
     prev.className = "lightbox-prev";
     prev.ariaLabel = "before média";
+
     /****Listener Previous****/
     prev.addEventListener("click", () => {
       const url = document.querySelectorAll(".gallery-card");
